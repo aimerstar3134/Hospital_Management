@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Hospital_Management.Areas.Patient.Models.AppoinmnetModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Appointment List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Appointment List</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Appointment ID</th>
+                            <th>Patient Name</th>
+                            <th>Doctor Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var appointment in Model)
+                        {
+                            <tr>
+                                <td>@appointment.Appoinment_Id</td>
+                                <td>@Html.ActionLink(appointment.Patient_Name, "Details", "Patient", new { area = "Patient", id = appointment.Appoinment_Id, name = appointment.Patient_Name, isDone = false }, null)</td>
+                                <td>@appointment.Doctor_Name</td>
+                                <td>@appointment.Date</td>
+                                <td>@appointment.STime - @appointment.ETime</td>
+                                <td>@if (appointment.IsDone)
+                                    {
+                                        <span class="badge badge-success">Completed</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-warning">Pending</span>
+                                    }</td>
+                                <td>
+                                    @if (!appointment.IsDone)
+                                    {
+                                        <button class="btn btn-outline-dark done-btn" data-appointment-id="@appointment.Appoinment_Id">Done</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.done-btn').each(function () {
+                var button = $(this);
+                var appointmentId = button.data('appointment-id');
+                // Make an AJAX call to get the IsDone status for each appointment
+                $.get('/Patient/GetDoneStatus', { appointmentId: appointmentId }, function (isDone) {
+                    if (isDone) {
+                        button.hide(); // Hide the button if the appointment is already done
+                    }
+                });
+            });
+
+            $('.done-btn').click(function () {
+                var button = $(this);
+                var appointmentId = button.data('appointment-id');
+                // Make the AJAX call to update the IsDone field
+                $.post('/Patient/UpdateDoneStatus', { appointmentId: appointmentId }, function (data) {
+                    button.hide(); // On success, hide the button
+                });
+            });
+        });
+    </script>
+}

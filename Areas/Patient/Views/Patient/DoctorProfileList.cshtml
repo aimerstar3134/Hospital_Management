@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Hospital_Management.Areas.Doctor.Models.DoctorModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Doctor Profiles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Doctor Profiles</h1>
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="input-group mb-3">
+                <input type="date" class="form-control" id="datepicker">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="showButton">Show Available Time</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="doctorCards">
+        <!-- Doctor profiles will be dynamically added here -->
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('#showButton').click(function () {
+                var selectedDate = $('#datepicker').val();
+                $.ajax({
+                    url: '/Doctor/GetAvailableTime',
+                    type: 'GET',
+                    data: { date: selectedDate },
+                    success: function (response) {
+                        $('#doctorCards').empty();
+                        if (response.length > 0) {
+                            var doctors = {};
+                            $.each(response, function (index, item) {
+                                if (!doctors[item.user_Id]) {
+                                    doctors[item.user_Id] = {
+                                        name: item.name,
+                                        designation: item.designation,
+                                        phone: item.phone,
+                                        gender: item.gender,
+                                        availableTimes: []
+                                    };
+                                }
+                                doctors[item.user_Id].availableTimes.push({
+                                    startTime: item.availableStartTime ? item.availableStartTime : 'N/A',
+                                    endTime: item.availableEndTime ? item.availableEndTime : 'N/A'
+                                });
+                            });
+
+                            $.each(doctors, function (index, doctor) {
+                                var card = `<div class="col-md-4 mb-4">
+                                            <div class="card shadow">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">${doctor.name}</h5>
+                                                    <p class="card-text">Designation: ${doctor.designation}</p>
+                                                    <p class="card-text">Date: ${selectedDate}</p>
+                                                    <p class="card-text">Available Times:</p>
+                                                    <ul>`;
+                                $.each(doctor.availableTimes, function (index, time) {
+                                    card += `<li>${time.startTime} - ${time.endTime}</li>`;
+                                });
+                                card += `</ul>
+                                        <p class="card-text">Phone: ${doctor.phone}</p>
+                                        <p class="card-text">Gender: ${doctor.gender}</p>
+                                        <a href="/Patient/Patient/AddAppoinment?id=${index}" class="btn btn-primary">Add Appointment</a>
+                                    </div>
+                                </div>
+                            </div>`;
+                                $('#doctorCards').append(card);
+                            });
+                        } else {
+                            var message = '<div class="col-md-12 text-center">No doctors available on the selected date.</div>';
+                            $('#doctorCards').append(message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+}

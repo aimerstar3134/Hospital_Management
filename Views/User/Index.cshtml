@@ -1,0 +1,67 @@
+﻿@model List<Hospital_Management.Areas.User.Models.usermodel>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - Users</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .card-body {
+            background-color: #fff;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="text-center mb-4">Users</h2>
+        @foreach (var user in Model)
+        {
+            <div class="card">
+                <div class="card-header">
+                    User ID: @user.UserID
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@user.UserName</h5>
+                    <p class="card-text">Email: @user.Email</p>
+                    <p class="card-text">Password: @user.Password</p>
+                    <p class="card-text">Role: @user.RoleId</p>
+                    <!-- Add more properties as needed -->
+                </div>
+            </div>
+        }
+    </div>
+
+</body>
+</html>
