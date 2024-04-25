@@ -1,0 +1,211 @@
+﻿<!-- PatientDashboard.cshtml -->
+@model IEnumerable<Hospital_Management.Areas.Patient.Models.AppoinmnetModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Patient Dashboard";
+}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+<style>
+    * {
+        box-sizing: inherit;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 40px; /* Adjust this value as needed */
+        right: 0;
+        background-color: white;
+        border-radius: 0.325rem;
+        box-shadow: 0px 0px 100px rgba(20, 18, 18, 0.25);
+        display: none;
+    }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    li {
+        list-style-type: none;
+        position: relative;
+        padding: 0.625rem 0 0.5rem;
+    }
+
+        li ul {
+            flex-direction: column;
+            position: absolute;
+            background-color: white;
+            align-items: flex-start;
+            transition: all 0.5s ease;
+            width: 20rem;
+            right: -3rem;
+            top: 4.5rem;
+            border-radius: 0.325rem;
+            gap: 0;
+            padding: 1rem 0rem;
+            opacity: 0;
+            box-shadow: 0px 0px 100px rgba(20, 18, 18, 0.25);
+            display: none;
+        }
+
+    ul li:hover > ul, ul li ul:hover {
+        visibility: visible;
+        opacity: 1;
+        display: flex;
+    }
+
+    .material-icons-outlined {
+        color: #888888;
+        transition: all 0.3s ease-out;
+    }
+
+        .material-icons-outlined:hover {
+            color: #ff9800;
+            transform: scale(1.25) translateY(-4px);
+            cursor: pointer;
+        }
+
+    .profile-icon {
+        font-size: 35px;
+        cursor: pointer;
+        margin-left: 1100px;
+        margin-top:30px;
+    }
+
+    .sub-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.725rem;
+        cursor: pointer;
+        padding: 0.5rem 1.5rem;
+    }
+
+        .sub-item:hover {
+            background-color: rgba(232, 232, 232, 0.4);
+        }
+
+            .sub-item:hover .material-icons-outlined {
+                color: #ff9800;
+                transform: scale(1.08) translateY(-2px);
+                cursor: pointer;
+            }
+
+            .sub-item:hover p {
+                color: #000;
+                cursor: pointer;
+            }
+
+        .sub-item p {
+            font-size: 0.85rem;
+            color: #888888;
+            font-weight: 500;
+            margin: 0.4rem 0;
+            flex: 1;
+        }
+</style>
+<div class="container">
+    <div class="profile-dropdown">
+        <span class="material-icons-outlined profile-icon" id="profileIcon">person</span>
+        <ul class="dropdown-menu">
+            <li class="sub-item"><span class="material-icons-outlined">manage_accounts</span><a asp-action="" asp-controller="Doctor" asp-area="Doctor" asp-route-id="@ViewBag.User_Id"><p>Update Profile</p></a></li>
+            <li class="sub-item"><span class="material-icons-outlined">refresh</span><a asp-action="resetpassword" asp-controller="Doctor" asp-area="Doctor"><p>Reset Password</p></a></li>
+            <li class="sub-item"><span class="material-icons-outlined">logout</span><a asp-action="Logout" asp-controller="User"><p>Logout</p></a></li>
+        </ul>
+    </div>
+
+    <h2>Welcome, </h2>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            Upcoming Appointments
+        </div>
+        <div class="card-body">
+            <!-- Upcoming Appointments Table -->
+            @if (Model != null && Model.Any())
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Doctor</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var appointment in Model)
+                        {
+                            <tr>
+                                <td>@appointment.Date</td>
+                                <td>@appointment.STime.ToString("hh:mm tt") - @appointment.ETime.ToString("hh:mm tt")</td>
+                                <td>@appointment.Doctor_Name</td>
+                                <td>
+                                    <a href="@Url.Action("AppointmentDetails", "Patient", new { id = appointment.Appoinment_Id })" class="btn btn-primary">Details</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No upcoming appointments.</p>
+            }
+        </div>
+    </div>
+
+    <!-- Include Test Reports Partial View -->
+    <div class="card mt-4">
+        <div class="card-header">
+            Test Reports
+        </div>
+        <div class="card-body">
+            <!-- Render TestReports partial view -->
+            @Html.Partial("~/Areas/Patient/Views/Patient/_TestReportsPartial.cshtml")
+        </div>
+    </div>
+
+    <!-- Actions Section -->
+    <div class="card mt-4">
+        <div class="card-header">
+            Actions
+        </div>
+        <div class="card-body">
+            <a href="@Url.Action("DoctorProfileList", "Patient")" class="btn btn-success">Schedule New Appointment</a>
+            <!-- Add more action buttons as needed -->
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var profileIcon = document.getElementById("profileIcon");
+        var dropdownMenu = document.querySelector(".profile-dropdown .dropdown-menu");
+
+        // Toggle dropdown menu visibility
+        profileIcon.addEventListener("click", function (event) {
+            event.stopPropagation(); // Prevent the click event from bubbling up
+            dropdownMenu.classList.toggle("show");
+        });
+
+        // Close dropdown menu when clicking outside of it
+        document.addEventListener("click", function (event) {
+            if (!dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove("show");
+            }
+        });
+    });
+</script>

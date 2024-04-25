@@ -18,6 +18,10 @@ namespace Hospital_Management.Areas.Patient.Controllers
             this.patientDb = patientDb;
         }
         Patient_Layer patient_Layer = new Patient_Layer();
+        public IActionResult PatientDashboard()
+        {
+            return View();
+        }
         public IActionResult AppoinmnetList()
         {
             string id = HttpContext.Session.GetString("userid");
@@ -115,7 +119,7 @@ namespace Hospital_Management.Areas.Patient.Controllers
         {
             string id = "1";
             List<DoctorModel> users = new List<DoctorModel>();
-            users = patient_Layer.GetDoctorProfile(id).ToList();
+            users = patient_Layer.GetDoctorProfile().ToList();
             return View(users);
         }
         public IActionResult details(string id,string name)

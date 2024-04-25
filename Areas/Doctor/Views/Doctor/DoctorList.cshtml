@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Hospital_Management.Areas.Doctor.Models.DoctorModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Doctor List";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Assuming you have a layout file
+}
+<style>/* Global styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Dashboard container */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Dashboard header */
+.dashboard-header h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/* Dashboard content */
+.dashboard-content {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Doctors list */
+.doctors-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+
+/* Doctor card */
+.doctor-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+/* Doctor name */
+.doctor-card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Doctor details */
+.doctor-card p {
+    margin-bottom: 8px;
+    color: #666;
+}
+
+/* Strong text in details */
+.doctor-card p strong {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Hover effect */
+.doctor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+</style>
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Doctor List</h1>
+    </div>
+    <div class="dashboard-content">
+        <div class="doctors-list">
+            @foreach (var doctor in Model)
+            {
+                <div class="doctor-card">
+                    <h2>@doctor.Name</h2>
+                    <p><strong>Designation:</strong> @doctor.Designation</p>
+                    <p><strong>Available Start Time:</strong> @doctor.AvailableStartTime</p>
+                    <p><strong>Available End Time:</strong> @doctor.AvailableEndTime</p>
+                    <p><strong>Phone:</strong> @doctor.Phone</p>
+                    <p><strong>Gender:</strong> @doctor.Gender</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

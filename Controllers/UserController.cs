@@ -140,25 +140,26 @@ namespace Hospital_Management.Controllers
                             }
                             else if (roleName == "Patient")
                             {
-                                SqlCommand cm = new SqlCommand("sp_GetPatientAvailable", conn);
-                                cm.CommandType= CommandType.StoredProcedure;
-                                cm.Parameters.AddWithValue("userId", userId.ToString());
-                                cm.Parameters.AddWithValue("today", dateString);
-                                int availableSlotsCount = (int)cm.ExecuteScalar();
+                                return RedirectToAction("PatientDashboard", "Patient", new { area = "Patient", email = email, Token = tokenString, roleId = roleId });
+                                //SqlCommand cm = new SqlCommand("sp_GetPatientAvailable", conn);
+                                //cm.CommandType= CommandType.StoredProcedure;
+                                //cm.Parameters.AddWithValue("userId", userId.ToString());
+                                //cm.Parameters.AddWithValue("today", dateString);
+                                //int availableSlotsCount = (int)cm.ExecuteScalar();
 
-                                if (availableSlotsCount == 0)
-                                {
+                                //if (availableSlotsCount == 0)
+                                //{
 
-                                    return RedirectToAction("DoctorProfileList", "Patient", new { area = "Patient", email = email, Token = tokenString, roleId = roleId });
-                                }
-                                else
-                                {
-                                    return RedirectToAction("AppoinmnetList", "Patient", new { area = "Patient", email = email, Token = tokenString, roleId = roleId });
-                                }
+                                //    return RedirectToAction("DoctorProfileList", "Patient", new { area = "Patient", email = email, Token = tokenString, roleId = roleId });
+                                //}
+                                //else
+                                //{
+                                //    return RedirectToAction("AppoinmnetList", "Patient", new { area = "Patient", email = email, Token = tokenString, roleId = roleId });
+                                //}
                             }
-                            else
+                            else if (roleName == "Staff")
                             {
-                                return RedirectToAction(nameof(Index), new { Token = tokenString });
+                                    return RedirectToAction("StaffDashboard", "Staff", new { area = "Staff", Token = tokenString});
                             }
                         }
 

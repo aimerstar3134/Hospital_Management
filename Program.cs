@@ -114,6 +114,11 @@ app.UseEndpoints(endpoints =>
                    areaName: "Patient",
                    pattern: "Patient/{controller=Patient}/{action=AppoinmnetList}");
 
+    endpoints.MapAreaControllerRoute(
+                   name: "Staff",
+                   areaName: "Staff",
+                   pattern: "Staff/{controller=Staff}/{action=StaffDashboard}");
+
     endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=User}/{action=Login}/{id?}");

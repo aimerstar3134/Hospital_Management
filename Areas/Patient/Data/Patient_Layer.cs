@@ -192,15 +192,15 @@ namespace Hospital_Management.Areas.Patient.Data
 
             return list;
         }
-        public IEnumerable<DoctorModel> GetDoctorProfile(string id)
+        public IEnumerable<DoctorModel> GetDoctorProfile()
         {
             List<DoctorModel> list = new List<DoctorModel>();
 
             using (SqlConnection conn = new SqlConnection(connection))
             {
-                SqlCommand cmd = new SqlCommand("GetDoctorProfile", conn);
+                SqlCommand cmd = new SqlCommand("GetDoctorByProfile", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("Role_ID", id);
+                
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 

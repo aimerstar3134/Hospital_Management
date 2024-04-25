@@ -17,9 +17,16 @@ namespace Hospital_Management.Areas.Doctor.Controllers
         string connection = "Data Source=_aimerstar_\\HARSHILMSSQL;Initial Catalog=HospitalDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
         public IActionResult DoctorProfileList()
         {
-
+            int i = Convert.ToInt32(HttpContext.Session.GetString("userid"));
             List<DoctorModel> users = new List<DoctorModel>();
-            users = layer.GetDoctorProfile().ToList();
+            users = layer.GetDoctorProfile(i).ToList();
+            return View(users);
+        }
+        public IActionResult DoctorList()
+        {
+            int i = Convert.ToInt32(HttpContext.Session.GetString("userid"));
+            List<DoctorModel> users = new List<DoctorModel>();
+            users = layer.GetDoctorProfile(i).ToList();
             return View(users);
         }
         [HttpGet]
@@ -36,14 +43,16 @@ namespace Hospital_Management.Areas.Doctor.Controllers
         [HttpGet]
         public IActionResult EditDoctorProfile(int id)
         {
-            DoctorModel doctor = layer.GetDoctorProfileById(id);
+            int i = Convert.ToInt32(HttpContext.Session.GetString("userid"));
+            ViewBag.User_Id = i;
+            DoctorModel doctor = layer.GetDoctorProfileById(i);
             return View(doctor);
         }
         [HttpPost]
         public IActionResult EditDoctorProfile(int id, [Bind] DoctorModel doctor)
         {
             layer.DoctorProfile(doctor, HttpContext);
-            return RedirectToAction("DoctorProfileList");
+            return RedirectToAction("DoctorList", "Doctor");
         }
         [HttpGet]
         public IActionResult DoctorAvailableProfile()

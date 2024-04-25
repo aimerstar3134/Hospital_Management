@@ -12,7 +12,7 @@ namespace Hospital_Management.Areas.Doctor.Data
     public class layer
     {
         string connection = "Data Source=_aimerstar_\\HARSHILMSSQL;Initial Catalog=HospitalDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
-        public IEnumerable<DoctorModel> GetDoctorProfile()
+        public IEnumerable<DoctorModel> GetDoctorProfile(int i)
         {
             List<DoctorModel> list = new List<DoctorModel>();
 
@@ -20,7 +20,7 @@ namespace Hospital_Management.Areas.Doctor.Data
             {
                 SqlCommand cmd = new SqlCommand("GetDoctorProfile", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-
+                cmd.Parameters.AddWithValue("@User_ID", i);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 

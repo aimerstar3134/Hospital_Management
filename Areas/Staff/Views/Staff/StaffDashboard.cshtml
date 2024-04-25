@@ -1,0 +1,278 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<style>
+    /* Custom CSS styles for the staff dashboard */
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .dashboard-header {
+        background-color: #007bff;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .quick-links ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+        .quick-links ul li {
+            margin-bottom: 10px;
+            margin-left:10px;
+        }
+
+            .quick-links ul li a {
+                color: #333;
+                text-decoration: none;
+            }
+
+                .quick-links ul li a:hover {
+                    color: #007bff;
+                    text-decoration: underline;
+                }
+
+    /* Card styles */
+    .card {
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+    .card-header {
+        background-color: #007bff;
+        color: #fff;
+        border-bottom: none;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .calendar-container {
+        margin-bottom: 20px;
+    }
+
+    .contact-info {
+        margin-bottom: 20px;
+    }
+
+    .settings-preferences {
+        margin-bottom: 20px;
+    }
+</style>
+<style>
+    /* Toggle switch CSS */
+    .form-switch {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+        .form-switch input {
+            display: none;
+        }
+
+        .form-switch label {
+            position: relative;
+            display: block;
+            width: 60px;
+            height: 34px;
+            background-color: #ccc;
+            border-radius: 17px;
+            padding: 3px;
+            transition: background-color 0.3s;
+        }
+
+        .form-switch input:checked + label {
+            background-color: #007bff;
+        }
+
+        .form-switch label::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 26px;
+            height: 26px;
+            background-color: #fff;
+            border-radius: 50%;
+            transition: left 0.3s;
+        }
+
+        .form-switch input:checked + label::after {
+            left: 31px;
+        }
+
+    /* Light theme styles */
+    body.light-theme {
+        background-color: #fff;
+        color: #333; /* Set font color for light theme */
+    }
+    label.light-theme{
+        background-color: #fff;
+        color: #333;
+    }
+
+    /* Dark theme styles */
+    body.dark-theme {
+        background-color: #212529;
+        color: #fff; /* Set font color for dark theme */
+    }
+    label.dark-theme{
+        background-color: #212529;
+        color: #fff;
+    }
+    
+    /* Add more theme styles as needed */
+</style>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 dashboard-header">
+            <h2>Welcome, @Context.Session.GetString("name")!</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 quick-links">
+            <div class="card">
+                <h3 class="card-header">Quick Links</h3>
+                <ul class="card-body">
+                <li><a asp-action="AppointmentList" asp-controller="Staff">View Appointments</a></li>
+                <li><a asp-action="ManagePatientRecords" asp-controller="Staff">Manage Patient Records</a></li>
+                <li><a asp-action="AddTestReport" asp-controller="Staff">Add Test Reports</a></li>
+                <li><a asp-action="ViewTestReports" asp-controller="Staff">Access Test Reports</a></li>
+                <!-- Add more quick links as needed -->
+            </ul>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <h3 class="card-header">Upcoming Appointments</h3>
+                <div class="card-body">
+                    <p class="card-text">No upcoming appointments.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <h3 class="card-header">Task Notifications</h3>
+                <div class="card-body">
+                    <p class="card-text">No pending tasks.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Other sections -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <h3 class="card-header">Recent Activity</h3>
+                <div class="card-body">
+                    <p class="card-text">No recent activity.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <h3 class="card-header">Calendar View</h3>
+                <div class="card-body">
+                    <div class="calendar-container">
+                        <iframe src="https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America%2FNew_York" style="border-width:0" width="100%" height="300" frameborder="0" scrolling="no"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Other sections -->
+        <!-- Other sections -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card contact-info">
+                    <h3 class="card-header">Contact Information</h3>
+                    <div class="card-body">
+                        <ul>
+                            <li>Address: Nr Sumul Dairy Road,Katargam,Surat,Gujarat</li>
+                            <li>Phone: +91-261-7161111</li>
+                            <li>Email: inquiry@kiranhospital.com</li>
+                            <!-- Add more contact information as needed -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 color">
+                <div class="card settings-preferences">
+                    <h3 class="card-header">Settings and Preferences</h3>
+                    <div class="card-body">
+                        <h4>Language Preference</h4>
+                        <select class="form-control">
+                            <option value="english">English</option>
+                            <option value="spanish">Spanish</option>
+                            <option value="french">French</option>
+                            <!-- Add more language options as needed -->
+                        </select>
+                        <br>
+                        <h4>Notification Settings</h4>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
+                            <label class="form-check-label" for="emailNotifications">
+                                Receive email notifications
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="smsNotifications">
+                            <label class="form-check-label" for="smsNotifications">
+                                Receive SMS notifications
+                            </label>
+                        </div>
+                        <br>
+                        <h4>Theme</h4>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="toggleTheme">
+                            <label class="form-check-label" for="toggleTheme">
+                            </label>
+                        </div>
+                        <!-- Add more settings and preferences as needed -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#toggleTheme').change(function () {
+            if ($(this).is(':checked')) {
+                // Dark theme selected
+                $('body').addClass('dark-theme');
+            } else {
+                // Light theme selected
+                $('body').removeClass('dark-theme');
+            }
+        });
+    });
+</script>

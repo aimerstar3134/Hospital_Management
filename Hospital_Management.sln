@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital_Management", "Hospital_Management.csproj", "{FCF41AE2-9FC7-4B56-B1DC-D1C245CDA1F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hospital_Management", "Hospital_Management.csproj", "{FCF41AE2-9FC7-4B56-B1DC-D1C245CDA1F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User_Entity", "..\User_Entity\User_Entity.csproj", "{FA80E883-EC40-4167-AD96-274650065ABE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "User_Entity", "..\User_Entity\User_Entity.csproj", "{FA80E883-EC40-4167-AD96-274650065ABE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Role_Entity", "..\Role_Entity\Role_Entity.csproj", "{DCC9BCF7-493D-43AC-9A26-B6C775A8769F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User_Database", "..\User_Database\User_Database.csproj", "{E1567161-3CB9-41C9-B9D8-3CF21353E553}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Role_Entity", "..\Role_Entity\Role_Entity.csproj", "{DCC9BCF7-493D-43AC-9A26-B6C775A8769F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{DCC9BCF7-493D-43AC-9A26-B6C775A8769F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCC9BCF7-493D-43AC-9A26-B6C775A8769F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCC9BCF7-493D-43AC-9A26-B6C775A8769F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E1567161-3CB9-41C9-B9D8-3CF21353E553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1567161-3CB9-41C9-B9D8-3CF21353E553}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1567161-3CB9-41C9-B9D8-3CF21353E553}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1567161-3CB9-41C9-B9D8-3CF21353E553}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
