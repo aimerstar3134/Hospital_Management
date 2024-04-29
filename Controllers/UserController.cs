@@ -161,6 +161,10 @@ namespace Hospital_Management.Controllers
                             {
                                     return RedirectToAction("StaffDashboard", "Staff", new { area = "Staff", Token = tokenString});
                             }
+                            else if (roleName == "Admin")
+                            {
+                                return RedirectToAction("AdminDashboard", "Admin", new { area = "Admin", Token = tokenString });
+                            }
                         }
 
                         return RedirectToAction("Login");

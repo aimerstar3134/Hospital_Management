@@ -1,17 +1,46 @@
-﻿<!-- PatientDashboard.cshtml -->
-@model IEnumerable<Hospital_Management.Areas.Patient.Models.AppoinmnetModel>
+﻿@model Hospital_Management.Areas.Admin.Models.AdminDashboardViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@{
-    ViewData["Title"] = "Patient Dashboard";
-}
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
 <style>
-    * {
-        box-sizing: inherit;
+    /* Overall layout styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
     }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .contain {
+        max-width: 1000px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Dashboard section styles */
+    .dashboard-section {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+        .dashboard-section h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-section p {
+            color: #666;
+        }
 
     .dropdown-menu {
         position: absolute;
@@ -22,7 +51,7 @@
         box-shadow: 0px 0px 100px rgba(20, 18, 18, 0.25);
         display: none;
         z-index: 1000; /* Ensure the dropdown is on top of other elements */
-        margin-left: 80%;
+        margin-left:80%;
     }
 
     .profile-dropdown {
@@ -33,13 +62,16 @@
             display: block;
         }
 
+
         .dropdown-menu.show {
             display: block;
         }
+
     img {
         max-width: 100%;
         height: auto;
     }
+
     ul {
         margin: 0;
         padding: 0;
@@ -92,7 +124,7 @@
         font-size: 35px;
         cursor: pointer;
         margin-left: 1100px;
-        margin-top:30px;
+        margin-top: 30px;
     }
 
     .sub-item {
@@ -127,7 +159,10 @@
             flex: 1;
         }
 </style>
+
 <div class="container">
+    <div class="contain d-flex justify-content-between align-items-center">
+    <h1 class="mb-0">Admin Dashboard</h1>
     <div class="profile-dropdown">
         <span class="material-icons-outlined profile-icon" id="profileIcon">person</span>
         <ul class="dropdown-menu">
@@ -136,68 +171,69 @@
             <li class="sub-item"><span class="material-icons-outlined">logout</span><a asp-action="Logout" asp-controller="User"><p>Logout</p></a></li>
         </ul>
     </div>
-
-    <h2>Welcome, </h2>
-
-    <div class="card mt-4">
-        <div class="card-header">
-            Upcoming Appointments
-        </div>
-        <div class="card-body">
-            <!-- Upcoming Appointments Table -->
-            @if (Model != null && Model.Any())
-            {
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Doctor</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var appointment in Model)
-                        {
-                            <tr>
-                                <td>@appointment.Date</td>
-                                <td>@appointment.STime.ToString("hh:mm tt") - @appointment.ETime.ToString("hh:mm tt")</td>
-                                <td>@appointment.Doctor_Name</td>
-                                <td>
-                                    <a href="@Url.Action("AppointmentDetails", "Patient", new { id = appointment.Appoinment_Id })" class="btn btn-primary">Details</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            }
-            else
-            {
-                <p>No upcoming appointments.</p>
-            }
-        </div>
+    </div>
+    <!-- User Management -->
+    <div class="dashboard-section">
+        <h2>User Management</h2>
+        <p>Total Users: </p>
+        <!-- Add more user management summary information here -->
     </div>
 
-    <!-- Include Test Reports Partial View -->
-    <div class="card mt-4">
-        <div class="card-header">
-            Test Reports
-        </div>
-        <div class="card-body">
-            <!-- Render TestReports partial view -->
-            @Html.Partial("~/Areas/Patient/Views/Patient/_TestReportsPartial.cshtml")
-        </div>
+    <!-- Doctor Management -->
+    <div class="dashboard-section">
+        <h2>Doctor Management</h2>
+        <p>Total Doctors: </p>
+        <!-- Add more doctor management summary information here -->
     </div>
 
-    <!-- Actions Section -->
-    <div class="card mt-4">
-        <div class="card-header">
-            Actions
-        </div>
-        <div class="card-body">
-            <a href="@Url.Action("DoctorProfileList", "Patient")" class="btn btn-success">Schedule New Appointment</a>
-            <!-- Add more action buttons as needed -->
-        </div>
+    <!-- Patient Management -->
+    <div class="dashboard-section">
+        <h2>Patient Management</h2>
+        <p>Total Patients: </p>
+        <!-- Add more patient management summary information here -->
+    </div>
+
+    <!-- Staff Management -->
+    <div class="dashboard-section">
+        <h2>Staff Management</h2>
+        <p>Total Staff: </p>
+        <!-- Add more staff management summary information here -->
+    </div>
+
+    <!-- Facility Management -->
+    <div class="dashboard-section">
+        <h2>Facility Management</h2>
+        <!-- Add summary information about facilities here -->
+    </div>
+
+    <!-- Appointment Management -->
+    <div class="dashboard-section">
+        <h2>Appointment Management</h2>
+        <!-- Add summary information about appointments here -->
+    </div>
+
+    <!-- Billing and Finance -->
+    <div class="dashboard-section">
+        <h2>Billing and Finance</h2>
+        <!-- Add summary information about billing and finance here -->
+    </div>
+
+    <!-- Reporting and Analytics -->
+    <div class="dashboard-section">
+        <h2>Reporting and Analytics</h2>
+        <!-- Add summary information about reporting and analytics here -->
+    </div>
+
+    <!-- Security and Access Control -->
+    <div class="dashboard-section">
+        <h2>Security and Access Control</h2>
+        <!-- Add summary information about security and access control here -->
+    </div>
+
+    <!-- System Configuration -->
+    <div class="dashboard-section">
+        <h2>System Configuration</h2>
+        <!-- Add summary information about system configuration here -->
     </div>
 </div>
 <script>
