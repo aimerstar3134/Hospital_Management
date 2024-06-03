@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Hospital_Management.Areas.Admin.Controllers.BillingViewModel>
+
+@{
+    ViewBag.Title = "Billing and Finance";
+}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<div class="container mt-5">
+    <h2>Billing and Finance</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in Model)
+            {
+                <tr>
+                    <td>@record.Id</td>
+                    <td>@record.Description</td>
+                    <td>@record.Amount</td>
+                    <td>@record.Date</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

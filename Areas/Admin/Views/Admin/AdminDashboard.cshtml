@@ -8,7 +8,7 @@
 <style>
     /* Overall layout styles */
     body {
-        font-family: Arial, sans-serif;
+        font-family: 'Montserrat', sans-serif;
         background-color: #f4f4f4;
         padding: 20px;
     }
@@ -17,6 +17,7 @@
         max-width: 1200px;
         margin: 0 auto;
     }
+
     .contain {
         max-width: 1000px;
         display: flex;
@@ -24,7 +25,6 @@
         align-items: center;
     }
 
-    /* Dashboard section styles */
     .dashboard-section {
         background-color: #fff;
         border: 1px solid #ddd;
@@ -42,30 +42,35 @@
             color: #666;
         }
 
+    .see-all-button {
+        display: block;
+        margin-top: 10px;
+        text-align: right;
+    }
+
     .dropdown-menu {
         position: absolute;
-        top: 40px; /* Adjust this value as needed */
+        top: 40px;
         right: 0;
         background-color: white;
         border-radius: 0.325rem;
         box-shadow: 0px 0px 100px rgba(20, 18, 18, 0.25);
         display: none;
-        z-index: 1000; /* Ensure the dropdown is on top of other elements */
-        margin-left:80%;
+        z-index: 1000;
+        margin-left: 80%;
     }
 
     .profile-dropdown {
-        position: relative; /* Set the parent element as relative */
+        position: relative;
     }
 
         .profile-dropdown:hover .dropdown-menu {
             display: block;
         }
 
-
-        .dropdown-menu.show {
-            display: block;
-        }
+    .dropdown-menu.show {
+        display: block;
+    }
 
     img {
         max-width: 100%;
@@ -162,80 +167,108 @@
 
 <div class="container">
     <div class="contain d-flex justify-content-between align-items-center">
-    <h1 class="mb-0">Admin Dashboard</h1>
-    <div class="profile-dropdown">
-        <span class="material-icons-outlined profile-icon" id="profileIcon">person</span>
-        <ul class="dropdown-menu">
-            <li class="sub-item"><span class="material-icons-outlined">manage_accounts</span><a asp-action="" asp-controller="Doctor" asp-area="Doctor" asp-route-id="@ViewBag.User_Id"><p>Update Profile</p></a></li>
-            <li class="sub-item"><span class="material-icons-outlined">refresh</span><a asp-action="resetpassword" asp-controller="Doctor" asp-area="Doctor"><p>Reset Password</p></a></li>
-            <li class="sub-item"><span class="material-icons-outlined">logout</span><a asp-action="Logout" asp-controller="User"><p>Logout</p></a></li>
-        </ul>
+        <h1 class="mb-0">Admin Dashboard</h1>
+        <div class="profile-dropdown">
+            <span class="material-icons-outlined profile-icon" id="profileIcon">person</span>
+            <ul class="dropdown-menu">
+                <li class="sub-item"><span class="material-icons-outlined">manage_accounts</span><a asp-action="" asp-controller="Doctor" asp-area="Doctor" asp-route-id="@ViewBag.User_Id"><p>Update Profile</p></a></li>
+                <li class="sub-item"><span class="material-icons-outlined">refresh</span><a asp-action="resetpassword" asp-controller="Doctor" asp-area="Doctor"><p>Reset Password</p></a></li>
+                <li class="sub-item"><span class="material-icons-outlined">logout</span><a asp-action="Logout" asp-controller="User"><p>Logout</p></a></li>
+            </ul>
+        </div>
     </div>
-    </div>
+
     <!-- User Management -->
     <div class="dashboard-section">
         <h2>User Management</h2>
-        <p>Total Users: </p>
-        <!-- Add more user management summary information here -->
+        <p>Total Users: @ViewBag.TotalUsers</p>
+        <div class="see-all-button">
+            <a asp-action="UserList" class="btn btn-primary">See All</a>
+        </div>
     </div>
 
     <!-- Doctor Management -->
     <div class="dashboard-section">
         <h2>Doctor Management</h2>
-        <p>Total Doctors: </p>
-        <!-- Add more doctor management summary information here -->
+        <p>Total Doctors: @ViewBag.TotalDoctors</p>
+        <div class="see-all-button">
+            <a asp-action="DoctorList" class="btn btn-primary">See All</a>
+        </div>
     </div>
 
     <!-- Patient Management -->
     <div class="dashboard-section">
         <h2>Patient Management</h2>
-        <p>Total Patients: </p>
-        <!-- Add more patient management summary information here -->
+        <p>Total Patients: @ViewBag.TotalPatients</p>
+        <div class="see-all-button">
+            <a asp-action="PatientList" class="btn btn-primary">See All</a>
+        </div>
     </div>
 
     <!-- Staff Management -->
     <div class="dashboard-section">
         <h2>Staff Management</h2>
-        <p>Total Staff: </p>
-        <!-- Add more staff management summary information here -->
+        <p>Total Staff: @ViewBag.TotalStaff</p>
+        <div class="see-all-button">
+            <a asp-action="StaffList" class="btn btn-primary">See All</a>
+        </div>
     </div>
 
     <!-- Facility Management -->
     <div class="dashboard-section">
         <h2>Facility Management</h2>
         <!-- Add summary information about facilities here -->
+        <div class="see-all-button">
+            <a asp-action="FacilityList" class="btn btn-primary">See All</a>
+        </div>
     </div>
 
     <!-- Appointment Management -->
     <div class="dashboard-section">
         <h2>Appointment Management</h2>
         <!-- Add summary information about appointments here -->
+        <div class="see-all-button">
+            <a asp-action="AppointmentList" class="btn btn-primary">See All</a>
+        </div>
     </div>
 
     <!-- Billing and Finance -->
     <div class="dashboard-section">
         <h2>Billing and Finance</h2>
         <!-- Add summary information about billing and finance here -->
+        <div class="see-all-button">
+            <a asp-action="BillingAndFinance" class="btn btn-primary">See All</a>
+        </div>
     </div>
 
     <!-- Reporting and Analytics -->
     <div class="dashboard-section">
         <h2>Reporting and Analytics</h2>
         <!-- Add summary information about reporting and analytics here -->
+        <div class="see-all-button">
+            <a asp-action="ReportingAndAnalytics" class="btn btn-primary">See All</a>
+        </div>
     </div>
 
     <!-- Security and Access Control -->
     <div class="dashboard-section">
         <h2>Security and Access Control</h2>
         <!-- Add summary information about security and access control here -->
+        <div class="see-all-button">
+            <a asp-action="SecurityAndAccessControl" class="btn btn-primary">See All</a>
+        </div>
     </div>
 
     <!-- System Configuration -->
     <div class="dashboard-section">
         <h2>System Configuration</h2>
         <!-- Add summary information about system configuration here -->
+        <div class="see-all-button">
+            <a asp-action="SystemConfiguration" class="btn btn-primary">See All</a>
+        </div>
     </div>
 </div>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var profileIcon = document.getElementById("profileIcon");

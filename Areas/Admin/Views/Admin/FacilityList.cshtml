@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Hospital_Management.Areas.Admin.Controllers.FacilityViewModel>
+
+@{
+    ViewBag.Title = "Facility List";
+}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<div class="container mt-5">
+    <h2>Facility List</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var facility in Model)
+            {
+                <tr>
+                    <td>@facility.Id</td>
+                    <td>@facility.Name</td>
+                    <td>@facility.Location</td>
+                    <td>@facility.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
