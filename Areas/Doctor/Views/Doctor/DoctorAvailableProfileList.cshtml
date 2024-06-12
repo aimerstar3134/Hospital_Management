@@ -166,7 +166,12 @@
                 <td>@Html.DisplayFor(modelItem => item.Date)</td>
                 <td>@Html.DisplayFor(modelItem => item.STime)</td>
                 <td>@Html.DisplayFor(modelItem => item.ETime)</td>
-                <td><button class="btn btn-danger delete-btn" data-id="@item.STime">Delete</button></td>
+                        <td>
+                            <form asp-action="DeleteAvailability" asp-controller="Doctor" method="post">
+                                <input type="hidden" name="STime" value="@item.STime" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
             </tr>
         }
     </tbody>
@@ -200,31 +205,5 @@
                 }
             });
         });
-
-        $(document).ready(function () {
-            $('.delete-btn').click(function () {
-                var id = $(this).data('id');
-
-                $.ajax({
-                    url: '/Doctor/DeleteAvailability',
-                    method: 'POST',
-                    data: { STime: id },
-                    success: function (response) {
-                        alert('Item deleted successfully');
-                        location.reload();
-                    },
-                    error: function (xhr, status, error) {
-                        alert('Error deleting item');
-                    }
-                });
-            });
-        });
     </script>
 }
-
-
-
-
-
-
-

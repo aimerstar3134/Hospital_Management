@@ -56,6 +56,7 @@
 //app.Run();
 
 using Hospital_Management.Areas.Patient.Data;
+using Hospital_Management.Areas.User.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -70,7 +71,10 @@ builder.Services.AddDbContext<PatientDbContext>(options =>
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromDays(15));
+builder.Services.AddScoped<user_layer>();  // Register as scoped
 
+// Other service registrations
+builder.Services.AddControllersWithViews();
 // Add MVC and HttpContextAccessor
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();

@@ -1,11 +1,14 @@
 ﻿@model IEnumerable<Hospital_Management.Areas.Patient.Models.AppoinmnetModel>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 @{
-    ViewData["Title"] = "AppointmentList - Staff";
+    ViewData["Title"] = "AppointmentDetails";
 }
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-<h1>AppointmentList</h1>
+<h1>AppointmentDetails</h1>
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -33,7 +36,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.ETime)
             </th>
-            
+            <th>
+                @Html.DisplayNameFor(model => model.IsDone)
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -64,10 +70,8 @@
                 @Html.DisplayFor(modelItem => item.ETime)
             </td>
             <td>
-                    <a asp-action="EditAppointment" asp-controller="Staff" asp-route-id="@item.Appoinment_Id">Edit</a> |
-                    <a asp-action="AppointmentDetails" asp-controller="Staff" asp-route-id="@item.Appoinment_Id">Details</a> |
-                    @* <a asp-action="DeleteAppointment" asp-controller="Staff" asp-route-id="@item.Appoinment_Id">Delete</a> *@
-                </td>
+                @Html.DisplayFor(modelItem => item.IsDone)
+            </td>
         </tr>
 }
     </tbody>

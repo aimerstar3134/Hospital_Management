@@ -289,7 +289,7 @@ namespace Hospital_Management.Areas.Doctor.Data
             {
                 using (SqlConnection conn = new SqlConnection(connection))
                 {
-                    string query = "  delete from Available_tbl where Start_Time=@Start_Time";
+                    string query = "delete from Available_tbl where Start_Time=@Start_Time";
 
                     using (SqlCommand command = new SqlCommand(query, conn))
                     {

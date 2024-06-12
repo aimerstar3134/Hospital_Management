@@ -15,13 +15,6 @@ namespace Hospital_Management.Areas.Doctor.Controllers
     {
         layer layer = new layer();
         string connection = "Data Source=_aimerstar_\\HARSHILMSSQL;Initial Catalog=HospitalDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
-        public IActionResult DoctorProfileList()
-        {
-            int i = Convert.ToInt32(HttpContext.Session.GetString("userid"));
-            List<DoctorModel> users = new List<DoctorModel>();
-            users = layer.GetDoctorProfile(i).ToList();
-            return View(users);
-        }
         public IActionResult DoctorList()
         {
             int i = Convert.ToInt32(HttpContext.Session.GetString("userid"));
@@ -155,7 +148,7 @@ namespace Hospital_Management.Areas.Doctor.Controllers
         public IActionResult DeleteAvailability(TimeSpan STime)
         {
             layer.DeleteAvailability(STime);
-            return Ok();
+            return RedirectToAction("DoctorAvailableProfileList");
         }
         [HttpGet]
         public IActionResult GetAvailableTime(DateTime date)

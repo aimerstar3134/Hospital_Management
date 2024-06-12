@@ -22,19 +22,7 @@ namespace Hospital_Management.Controllers
         {
             this.configuration = configuration;            
         }
-        public IActionResult IsEmailAvailable(string Email)
-        {
-            try
-            {
-                var isEmailAvailable = obj_user.GetAllUser().Any(u => u.Email == Email);
-                return Content(isEmailAvailable.ToString().ToLower(), "text/plain");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred: {ex.Message}");
-                return Content("error", "text/plain");
-            }
-        }
+        
         public IActionResult Index()
         {
             List<usermodel> users = new List<usermodel>();
@@ -50,7 +38,7 @@ namespace Hospital_Management.Controllers
         public IActionResult AddUser([Bind] usermodel user)
         {
             obj_user.AddUser(user, HttpContext);
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
         [HttpGet]
         public IActionResult Login()
@@ -131,11 +119,11 @@ namespace Hospital_Management.Controllers
                                 if (availableSlotsCount == 0)
                                 {
                                     
-                                    return RedirectToAction("DoctorAvailableProfile", "Doctor", new { area = "Doctor", email = email, Token = tokenString, roleId = roleId });
+                                    return RedirectToAction("DoctorList", "Doctor", new { area = "Doctor", email = email, Token = tokenString, roleId = roleId });
                                 }
                                 else
                                 {
-                                    return RedirectToAction("DoctorAvailableProfileList", "Doctor", new { area = "Doctor", email = email, Token = tokenString, roleId = roleId });
+                                    return RedirectToAction("DoctorList", "Doctor", new { area = "Doctor", email = email, Token = tokenString, roleId = roleId });
                                 }
                             }
                             else if (roleName == "Patient")

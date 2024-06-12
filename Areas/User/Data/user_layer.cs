@@ -31,7 +31,75 @@ namespace Hospital_Management.Areas.User.Data
                 }
                 conn.Close();
             }
-            return users;
+            return users;   
+        }
+
+        public int GetUserCount()
+        {
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open(); // Open the connection
+
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM User_tbl", conn);
+                cmd.CommandType = CommandType.Text;
+
+                // ExecuteScalar returns the first column of the first row in the result set
+                int count = (int)cmd.ExecuteScalar();
+
+                conn.Close(); // Close the connection
+
+                return count;
+            }
+        }
+        public int GetDoctorCount()
+        {
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM User_tbl where Role_ID = 1", conn);
+                cmd.CommandType = CommandType.Text;
+
+                int count = (int)cmd.ExecuteScalar();
+
+                conn.Close();
+
+                return count;
+            }
+        }
+
+        public int GetPatientCount()
+        {
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM User_tbl where Role_ID = 2", conn);
+                cmd.CommandType = CommandType.Text;
+
+                int count = (int)cmd.ExecuteScalar();
+
+                conn.Close();
+
+                return count;
+            }
+        }
+
+        public int GetStaffCount()
+        {
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM User_tbl where Role_ID = 3", conn);
+                cmd.CommandType = CommandType.Text;
+
+                int count = (int)cmd.ExecuteScalar();
+
+                conn.Close();
+
+                return count;
+            }
         }
 
         public void AddUser(usermodel user, HttpContext httpContext)
