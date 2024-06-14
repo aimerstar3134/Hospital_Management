@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Service";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .services-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid layout */
+        gap: 20px; /* Adjust gap between cards */
+        padding: 20px;
+    }
+
+    .service-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Increased box shadow */
+        transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Added transition for box shadow and transform */
+    }
+
+        .service-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased box shadow on hover */
+            transform: translateY(-5px); /* Lift the card slightly on hover */
+        }
+
+        .service-card .service-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .service-card .service-text {
+            font-size: 1em;
+            color: #6c757d;
+            text-align: left;
+        }
+
+        /* List styling */
+        .service-card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+            .service-card ul li {
+                padding: 5px 0;
+            }
+</style>
+
+<div class="services-container">
+    
+    <div class="service-card">
+        <h5 class="service-title">Explore Our Medical Specialties</h5>
+        <p class="service-text">Discover our wide range of medical specialties, from advanced cardiology to innovative neurology solutions.</p>
+    </div>
+    <div class="service-card">
+        <h5 class="service-title">Discover Treatment Options</h5>
+        <p class="service-text">Learn about the latest treatment options available for various medical conditions, tailored to your needs.</p>
+    </div>
+    <div class="service-card">
+        <h5 class="service-title">Advanced Diagnostic Services</h5>
+        <p class="service-text">Benefit from state-of-the-art diagnostic services including radiology, pathology, and comprehensive laboratory tests.</p>
+    </div>
+    <div class="service-card">
+        <h5 class="service-title">Experience Cutting-Edge Surgical Solutions</h5>
+        <p class="service-text">Trust our skilled surgeons to provide expert care in a variety of surgical specialties, ensuring optimal outcomes for every patient.</p>
+    </div>
+    <div class="service-card">
+        <h5 class="service-title">Emergency Care When You Need It Most</h5>
+        <p class="service-text">Our dedicated ulergency services team is available 24/7 to provide rapid and effective care for all ulergencies, ensuring your peace of mind.</p>
+    </div>
+    <div class="service-card">
+        <h5 class="service-title">Comprehensive Additional Services</h5>
+        <p class="service-text">Explore our range of additional healthcare services, including rehabilitation, mental health support, maternity care, and more.</p>
+    </div>
+    <div class="service-card">
+        <h5 class="service-title">Discover Our Special Programs and Centers</h5>
+        <p class="service-text">Learn about our specialized programs and centers, dedicated to providing exceptional care and support for specific health needs.</p>
+    </div>
+    <div class="service-card">
+        <h5 class="service-title">State-of-the-Art Facilities and Technology</h5>
+        <p class="service-text">Experience the latest in healthcare technology and modern facilities designed to enhance your comfort and well-being throughout your journey with us.</p>
+    </div>
+    <div class="service-card">
+        <h5 class="service-title">Meet Our Expert Team</h5>
+        <p class="service-text">Get to know our highly skilled and compassionate medical team, dedicated to delivering personalized care and achieving the best possible outcomes for our patients.</p>
+    </div>
+    <div class="service-card">
+        <h5 class="service-title">Hear from Our Satisfied Patients</h5>
+        <p class="service-text">Discover firsthand experiences from patients who have entrusted us with their care, and learn how we've made a positive impact on their lives.</p>
+    </div>
+    <div class="service-card">
+        <h5 class="service-title">Book Your Appointment Today</h5>
+        <p class="service-text">Schedule your appointment with ease and convenience, and take the first step towards better health and well-being.</p>
+    </div>
+    <div class="service-card">
+        <h5 class="service-title">Understanding Insurance and Payment</h5>
+        <p class="service-text">Find out more about insurance coverage options and flexible payment plans to make healthcare more accessible and affordable for you.</p>
+    </div>
+    <div class="service-card">
+        <h5 class="service-title">Check Out Our FAQs</h5>
+        <p class="service-text">Explore answers to commonly asked questions about our services, facilities, insurance coverage, and more.</p>
+    </div>
+    <div class="service-card">
+        <h5 class="service-title">Get in Touch</h5>
+        <p class="service-text">Contact us today for more information, assistance, or to schedule your visit. We're here to help!.</p>
+    </div>
+
+</div>
+
+@* Footer Component *@
+<Footer />

@@ -1,11 +1,12 @@
 ﻿@model Hospital_Management.Areas.Doctor.Models.available
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "DoctorAvailableProfile"; 
+    ViewData["Title"] = "DoctorAvailableProfile";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h1>Doctor Available Profile</h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-MiEXF6+S7hrEC5/iUhZl3LvJgpYwC9zaJQ9yWJgfT5ZbH7RO+F4+nNJWoy2UfRS4" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
 <h4>WELCOME, @Context.Session.GetString("name").ToUpper()</h4>
 <div class="reset-password-container">
@@ -13,62 +14,70 @@
 </div>
 <hr />
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="DoctorAvailableProfile">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="User_Id" class="control-label">User ID</label>
-                    <input asp-for="User_Id" class="form-control" />
-                    <span asp-validation-for="User_Id" class="text-danger"></span>
-                </div>
+<a href="@Url.Action("DoctorList", "Doctor")" class="back-button">
+    <span class="material-icons-outlined">arrow_back</span>
+    <span>Back</span>
+</a>
+<div class="dashboard-container">
+    <div class="dashboard-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="DoctorAvailableProfile">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="User_Id" class="control-label">User ID</label>
+                            <input asp-for="User_Id" class="form-control" />
+                            <span asp-validation-for="User_Id" class="text-danger"></span>
+                        </div>
 
-                <div class="form-group">
-                    <label asp-for="Name" class="control-label">Name</label>
-                    <input asp-for="Name" class="form-control" id="dname" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label">Name</label>
+                            <input asp-for="Name" class="form-control" id="dname" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
 
-                <div class="form-group">
-                    <label asp-for="Date" class="control-label"></label>
-                    <input asp-for="Date" class="form-control" type="date" min="@DateTime.Now.ToString("yyyyy-mm-dd")" />
-                    <span asp-validation-for="Date" class="text-danger" id="date"></span>
-                </div>
+                        <div class="form-group">
+                            <label asp-for="Date" class="control-label"></label>
+                            <input asp-for="Date" class="form-control" type="date" min="@DateTime.Now.ToString("yyyyy-mm-dd")" />
+                            <span asp-validation-for="Date" class="text-danger" id="date"></span>
+                        </div>
 
-                <div class="form-group">
-                    <label asp-for="STime" class="control-label">Start Time</label>
-                    <select asp-for="STime" class="form-control">
-                        @for (int hour = 0; hour < 24; hour++)
-                        {
-                            <option value="@hour.ToString().PadLeft(2, '0'):00">@hour.ToString().PadLeft(2, '0'):00</option>
-                        }
-                    </select>
-                    <span asp-validation-for="STime" class="text-danger"></span>
-                </div>
+                        <div class="form-group">
+                            <label asp-for="STime" class="control-label">Start Time</label>
+                            <select asp-for="STime" class="form-control">
+                                @for (int hour = 0; hour < 24; hour++)
+                                {
+                                    <option value="@hour.ToString().PadLeft(2, '0'):00">@hour.ToString().PadLeft(2, '0'):00</option>
+                                }
+                            </select>
+                            <span asp-validation-for="STime" class="text-danger"></span>
+                        </div>
 
-                <div class="form-group">
-                    <label asp-for="ETime" class="control-label">End Time</label>
-                    <select asp-for="ETime" class="form-control">
-                        @for (int hour = 0; hour < 24; hour++)
-                        {
-                            <option value="@hour.ToString().PadLeft(2, '0'):00">@hour.ToString().PadLeft(2, '0'):00</option>
-                        }
-                    </select>
-                    <span asp-validation-for="ETime" class="text-danger"></span>
-                </div>
+                        <div class="form-group">
+                            <label asp-for="ETime" class="control-label">End Time</label>
+                            <select asp-for="ETime" class="form-control">
+                                @for (int hour = 0; hour < 24; hour++)
+                                {
+                                    <option value="@hour.ToString().PadLeft(2, '0'):00">@hour.ToString().PadLeft(2, '0'):00</option>
+                                }
+                            </select>
+                            <span asp-validation-for="ETime" class="text-danger"></span>
+                        </div>
 
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" id="submit"/>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" id="submit" />
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
 
-<div>
+@* <div>
     <a asp-action="DoctorAvailableProfileList">Back to List</a>
-</div>
+</div> *@
 
 @section Scripts {
     @{
@@ -78,8 +87,8 @@
         // Disable past dates in the date input field
         var today = new Date().toISOString().split('T')[0];
         document.getElementById("Date").setAttribute("min", today);
-        </script>
-        <script>
+    </script>
+    <script>
         $('#STime,#ETime,#Date').on('change', function () {
             var date = $('#Date').val();
             var doctorName = $('#dname').val();
@@ -92,17 +101,17 @@
                 type: 'GET',
                 data: { date: date, doctorName: doctorName, startTime: startTime, endTime: endTime },
                 success: function (result) {
-                    
+
+                });
+        },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('An error occurred while fetching available times:', textStatus, errorThrown);
+                // Show an alert to the user if there is an error
+                alert('Error: ' + errorThrown);
+            }
                     });
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.error('An error occurred while fetching available times:', textStatus, errorThrown);
-                    // Show an alert to the user if there is an error
-                    alert('Error: ' + errorThrown);
-                }
-            });
-        });
-        $('#submit').on("click",function (event) {
+                });
+        $('#submit').on("click", function (event) {
             var date = $('#Date').val();
             var doctorName = $('#dname').val();
             var startTime = $('#STime').val();
@@ -112,7 +121,7 @@
                 type: 'GET',
                 data: { date: date, doctorName: doctorName, startTime: startTime, endTime: endTime },
                 success: function (result) {
-                    
+
                     $('form').off('submit').submit();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -125,16 +134,38 @@
     </script>
 }
 
-    <style>
-        /* Custom CSS styles */
-        .container {
-            margin-top: 20px;
+<style>
+    /* Custom CSS styles */
+    .container {
+        margin-top: 20px;
+    }
+
+    .reset-password-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    /* Back button */
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 20px;
+        text-decoration: none;
+        color: #007bff;
+        transition: color 0.2s ease;
+    }
+
+        .back-button:hover {
+            color: #0056b3;
         }
 
-        .reset-password-container {
-            position: absolute;
-            top: 10px;
-            right: 10px;
+        .back-button .material-icons-outlined {
+            font-size: 24px;
+            margin-right: 8px;
         }
-        
-    </style>
+
+        .back-button span {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+</style>

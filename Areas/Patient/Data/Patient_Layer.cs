@@ -2,6 +2,7 @@
 using Hospital_Management.Areas.Patient.Models;
 using Hospital_Management.Areas.User.Models;
 using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Hospital_Management.Areas.Patient.Data
@@ -220,6 +221,32 @@ namespace Hospital_Management.Areas.Patient.Data
             }
             return list;
         }
+        public IEnumerable<DoctorModel> GetAllDoctorProfile()
+        {
+            List<DoctorModel> list = new List<DoctorModel>();
+
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from User_tbl where Role_ID = 1", conn);
+                cmd.CommandType = CommandType.Text;
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    DoctorModel user = new DoctorModel();
+                    user.User_Id = Convert.ToInt32(reader["User_ID"]);
+                    user.Name = reader["Name"].ToString();
+                    user.Designation = reader["Designation"].ToString();
+                    user.Phone = reader["Phone"].ToString();
+                    user.Gender = reader["Gender"].ToString();
+                    list.Add(user);
+                }
+                conn.Close();
+            }
+            return list;
+        }
         public available GetDoctorAvailableProfileById(string id)
         {
             available user = new available();
@@ -257,6 +284,29 @@ namespace Hospital_Management.Areas.Patient.Data
                 while (reader.Read())
                 {
                     user.Date = Convert.ToDateTime(reader["Date"].ToString());
+                }
+                conn.Close();
+            }
+            return user;
+        }
+        public IEnumerable<usermodel> GetAllPatientProfileById(string id)
+        {
+            List<usermodel> user = new List<usermodel>();
+
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                SqlCommand cmd = new SqlCommand("GetUserById", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("User_ID", id);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    usermodel use = new usermodel();
+                    use.UserName = reader["Name"].ToString();
+                    use.Email = reader["Email"].ToString();
+                    user.Add(use);
                 }
                 conn.Close();
             }

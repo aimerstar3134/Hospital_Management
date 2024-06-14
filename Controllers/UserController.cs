@@ -110,44 +110,15 @@ namespace Hospital_Management.Controllers
 
                             if (roleName == "Doctor")
                             {
-                                SqlCommand cm = new SqlCommand("sp_GetDoctorAvailable", conn);
-                                cm.CommandType = CommandType.StoredProcedure;
-                                cm.Parameters.AddWithValue("userId", userId.ToString());
-                                cm.Parameters.AddWithValue("today", dateString);
-                                int availableSlotsCount = (int)cm.ExecuteScalar();
-
-                                if (availableSlotsCount == 0)
-                                {
-                                    
-                                    return RedirectToAction("DoctorList", "Doctor", new { area = "Doctor", email = email, Token = tokenString, roleId = roleId });
-                                }
-                                else
-                                {
-                                    return RedirectToAction("DoctorList", "Doctor", new { area = "Doctor", email = email, Token = tokenString, roleId = roleId });
-                                }
+                                return RedirectToAction("DoctorList", "Doctor", new { area = "Doctor", email = email, Token = tokenString, roleId = roleId });
                             }
                             else if (roleName == "Patient")
                             {
                                 return RedirectToAction("PatientDashboard", "Patient", new { area = "Patient", email = email, Token = tokenString, roleId = roleId });
-                                //SqlCommand cm = new SqlCommand("sp_GetPatientAvailable", conn);
-                                //cm.CommandType= CommandType.StoredProcedure;
-                                //cm.Parameters.AddWithValue("userId", userId.ToString());
-                                //cm.Parameters.AddWithValue("today", dateString);
-                                //int availableSlotsCount = (int)cm.ExecuteScalar();
-
-                                //if (availableSlotsCount == 0)
-                                //{
-
-                                //    return RedirectToAction("DoctorProfileList", "Patient", new { area = "Patient", email = email, Token = tokenString, roleId = roleId });
-                                //}
-                                //else
-                                //{
-                                //    return RedirectToAction("AppoinmnetList", "Patient", new { area = "Patient", email = email, Token = tokenString, roleId = roleId });
-                                //}
                             }
                             else if (roleName == "Staff")
                             {
-                                    return RedirectToAction("StaffDashboard", "Staff", new { area = "Staff", Token = tokenString});
+                                return RedirectToAction("StaffDashboard", "Staff", new { area = "Staff", Token = tokenString});
                             }
                             else if (roleName == "Admin")
                             {
@@ -188,6 +159,55 @@ namespace Hospital_Management.Controllers
 
             return Content("<!DOCTYPE html><html><head><title>Logging out...</title><script>setTimeout(function() { window.location.reload(true); setTimeout(function() { window.location.href = '/User/Login'; }, ); }, 2000);</script></head><body></body></html>", "text/html");
         }
+
+        //public void UpdateUser(usermodel user)
+        //{
+        //    try
+        //    {
+        //        using (SqlConnection con = new SqlConnection(connection))
+        //        {
+        //            using (SqlCommand cmd = new SqlCommand("UPDATE User_tbl SET Name = @Name, Email = @Email, Password = @Password, Role_ID = @Role_ID WHERE User_ID = @UserID", con))
+        //            {
+        //                cmd.Parameters.AddWithValue("@UserID", user.UserID);
+        //                cmd.Parameters.AddWithValue("@Name", user.UserName);
+        //                cmd.Parameters.AddWithValue("@Email", user.Email);
+        //                cmd.Parameters.AddWithValue("@Password", user.Password);
+        //                cmd.Parameters.AddWithValue("@Role_ID", user.RoleId);
+
+        //                con.Open();
+        //                cmd.ExecuteNonQuery();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle the exception here, you might want to log it or throw it further.
+        //        Console.WriteLine("Error: " + ex.Message);
+        //    }
+        //}
+
+        public void DeleteUser(int userId)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connection))
+                {
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM User_tbl WHERE User_ID = @UserID", con))
+                    {
+                        cmd.Parameters.AddWithValue("@UserID", userId);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception here, you might want to log it or throw it further.
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
 
     }
 }

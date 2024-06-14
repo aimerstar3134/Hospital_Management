@@ -1,22 +1,314 @@
+/* Global Styles */
 html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    padding-top: 80px; /* Adjust according to the header height */
 }
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #15558d;
+    padding-top: 40px;
+    position: relative; /* Ensure proper positioning */
+    bottom: 0; /* Stick to the bottom of the screen */
+    width: 100%; /* Occupy full width */
+}
+
+    .footer a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+.footer-title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+
+.footer .footer-widget.footer-menu ul,
+.footer .footer-widget.footer-menu ul li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer .footer-widget .footer-logo {
+    margin-bottom: 30px;
+}
+
+.footer .footer-widget .footer-about-content p {
+    color: #fff;
+}
+
+.footer .footer-menu ul li a {
+    color: #fff;
+    font-size: 15px;
+    transition: all 0.4s ease;
+    display: block; /* Ensure each link occupies its own line */
+    margin-bottom:5px;
+}
+
+    .footer .footer-menu ul li a:hover {
+        letter-spacing: 0.5px;
+        padding-left: 10px;
+    }
+
+.footer-contact-info {
+    color: #fff;
+    font-size: 15px;
+}
+
+    .footer-contact-info .footer-address {
+        display: flex;
+        margin-right: 20px;
+    }
+
+        .footer-contact-info .footer-address .fa-map-marker-alt,
+        .footer-contact-info p i {
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+.footer-bottom {
+    border-top: 1px solid #1663a6;
+    padding: 30px 0;
+    text-align: center;
+}
+
+    .footer-bottom .copyright {
+        color: #fff;
+        font-size: 15px;
+    }
+
+    .footer-bottom .policy-menu a {
+        color: #09e5ab;
+        transition: all 0.4s ease;
+    }
+
+        .footer-bottom .policy-menu a:hover {
+            color: #fff;
+        }
+
+/* Additional styles to remove excessive spacing */
+.footer-menu ul li {
+    margin-bottom: 10px; /* Reduce margin between list items */
+}
+
+
+/* Header and Navigation Styles */
+#header {
+    background: #fff;
+    position: fixed; /* Fix the header to the top */
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: all 0.5s;
+    z-index: 997;
+    box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.1);
+}
+
+    #header .logo {
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        font-family: "Poppins", sans-serif;
+    }
+
+        #header .logo a {
+            color: #2c4964;
+        }
+
+        #header .logo img {
+            max-height: 40px;
+        }
+
+.navbar {
+    padding: 0;
+}
+
+    .navbar ul {
+        display: flex;
+        list-style: none;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar li {
+        position: relative;
+        white-space: nowrap;
+        padding: 8px 0 8px 20px;
+    }
+
+    .navbar a {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #2c4964;
+        transition: 0.3s;
+        border-bottom: 2px solid #fff;
+        padding: 5px 2px;
+    }
+
+        .navbar a:hover,
+        .navbar .active {
+            color: #1977cc;
+            border-color: #1977cc;
+        }
+
+    .navbar .dropdown ul {
+        display: block;
+        position: absolute;
+        left: 20px;
+        top: calc(100% + 30px);
+        background: #fff;
+        box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+        transition: 0.3s;
+        opacity: 0;
+        visibility: hidden;
+        margin: 0;
+        padding: 10px 0;
+        z-index: 99;
+    }
+
+    .navbar .dropdown:hover > ul {
+        opacity: 1;
+        top: 100%;
+        visibility: visible;
+    }
+
+.mobile-nav-toggle {
+    color: #2c4964;
+    font-size: 28px;
+    cursor: pointer;
+    display: none;
+    line-height: 0;
+    transition: 0.5s;
+    margin-left: 5px;
+}
+
+/* Miscellaneous */
+.hideTopHeader {
+    display: none !important;
+    transition: 1s !important;
+}
+
+.stickyHeader {
+    top: 0 !important;
+    transition: 1ms !important;
+}
+
+.mobile-menu-nav {
+    list-style: none;
+    font-size: 1.2rem;
+    color: #1977cc !important;
+}
+
+    .mobile-menu-nav .icon {
+        font-size: 1.3rem;
+        margin-right: 15px;
+    }
+
+    .mobile-menu-nav li {
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+
+        .mobile-menu-nav li a {
+            padding: 5px;
+        }
+
+.ant-drawer-body {
+    background-color: #d2d2ff;
+}
+/* Style for the container */
+.container {
+    padding: 20px;
+}
+
+/* Style for the "Why Choose Us?" content */
+.why-us .content {
+    padding: 30px;
+    background: #1977cc;
+    border-radius: 4px;
+    color: #fff;
+}
+
+    .why-us .content h3 {
+        font-weight: 700;
+        font-size: 34px;
+        margin-bottom: 30px;
+        color: #fff;
+    }
+
+    .why-us .content p {
+        margin-bottom: 30px;
+    }
+
+    /* Style for the "Read More" button */
+    .why-us .content .more-btn {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 6px 30px 8px 30px;
+        color: #fff;
+        border-radius: 50px;
+        transition: all ease-in-out 0.4s;
+    }
+
+        .why-us .content .more-btn i {
+            font-size: 14px;
+        }
+
+        .why-us .content .more-btn:hover {
+            color: #1977cc;
+            background: #fff;
+        }
+
+/* Style for the icon boxes */
+.why-us .icon-boxes .icon-box {
+    text-align: center;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    width: 100%;
+    transition: all ease-in-out 0.4s; /* Add transition for smoother hover effect */
+}
+
+    .why-us .icon-boxes .icon-box:hover {
+        transform: translateY(-5px); /* Move the box slightly upwards on hover */
+        box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.2); /* Add a subtle shadow on hover */
+    }
+
+    .why-us .icon-boxes .icon-box .icon {
+        font-size: 40px;
+        color: #1977cc;
+        margin-bottom: 30px;
+    }
+
+    .why-us .icon-boxes .icon-box h4 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0 0 30px 0;
+        color: #2c4964;
+    }
+
+    .why-us .icon-boxes .icon-box p {
+        font-size: 15px;
+        color: #848484;
+    }

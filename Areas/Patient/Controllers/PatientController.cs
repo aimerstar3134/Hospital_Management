@@ -1,10 +1,10 @@
-﻿using Hospital_Management.Areas.Doctor.Models;
+﻿using Hospital_Management.Areas.Doctor.Data;
+using Hospital_Management.Areas.Doctor.Models;
 using Hospital_Management.Areas.Patient.Data;
 using Hospital_Management.Areas.Patient.Models;
+using Hospital_Management.Areas.User.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using System.Data;
 
 namespace Hospital_Management.Areas.Patient.Controllers
@@ -20,7 +20,10 @@ namespace Hospital_Management.Areas.Patient.Controllers
         Patient_Layer patient_Layer = new Patient_Layer();
         public IActionResult PatientDashboard()
         {
-            return View();
+            string i = HttpContext.Session.GetString("userid");
+            List<usermodel> users = new List<usermodel>();
+            users = patient_Layer.GetAllPatientProfileById(i).ToList();
+            return View(users);
         }
         public IActionResult AppoinmnetList()
         {
@@ -122,6 +125,13 @@ namespace Hospital_Management.Areas.Patient.Controllers
             users = patient_Layer.GetDoctorProfile().ToList();
             return View(users);
         }
+        public IActionResult AllDoctors()
+        {
+            string id = "1";
+            List<DoctorModel> users = new List<DoctorModel>();
+            users = patient_Layer.GetAllDoctorProfile().ToList();
+            return View(users);
+        }
         public IActionResult details(string id,string name)
         {
             IEnumerable<AppoinmnetModel> appointments = patient_Layer.GetAppointmentsbypatient(id,name);
@@ -145,5 +155,18 @@ namespace Hospital_Management.Areas.Patient.Controllers
             patient_Layer.UpdateAppointmentDoneStatus(appointmentId);
             return Ok();
         }
+        //[HttpGet]
+        //public IActionResult EditPatientProfile()
+        //{
+        //    string i = HttpContext.Session.GetString("userid");
+        //    usermodel user  = patient_Layer.GetAllPatientProfileById(i).ToList();
+        //    return View(user);
+        //}
+        //[HttpPost]
+        //public IActionResult EditPatientProfile(int id, [Bind] usermodel user)
+        //{
+        //    patient_Layer.AddUser(user);
+        //    return RedirectToAction("DoctorList", "Doctor");
+        //}
     }
 }

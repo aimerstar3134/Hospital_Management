@@ -39,22 +39,22 @@
         padding: 0.625rem 0 0.5rem;
     }
 
-        li ul {
-            flex-direction: column;
-            position: absolute;
-            background-color: white;
-            align-items: flex-start;
-            transition: all 0.5s ease;
-            width: 20rem;
-            right: -3rem;
-            top: 4.5rem;
-            border-radius: 0.325rem;
-            gap: 0;
-            padding: 1rem 0rem;
-            opacity: 0;
-            box-shadow: 0px 0px 100px rgba(20, 18, 18, 0.25);
-            display: none;
-        }
+    li ul {
+        flex-direction: column;
+        position: absolute;
+        background-color: white;
+        align-items: flex-start;
+        transition: all 0.5s ease;
+        width: 20rem;
+        right: -3rem;
+        top: 4.5rem;
+        border-radius: 0.325rem;
+        gap: 0;
+        padding: 1rem 0rem;
+        opacity: 0;
+        box-shadow: 0px 0px 100px rgba(20, 18, 18, 0.25);
+        display: none;
+    }
 
     ul li:hover > ul, ul li ul:hover {
         visibility: visible;
@@ -67,11 +67,11 @@
         transition: all 0.3s ease-out;
     }
 
-        .material-icons-outlined:hover {
-            color: #ff9800;
-            transform: scale(1.25) translateY(-4px);
-            cursor: pointer;
-        }
+    .material-icons-outlined:hover {
+        color: #ff9800;
+        transform: scale(1.25) translateY(-4px);
+        cursor: pointer;
+    }
 
     .profile-icon {
         font-size: 35px;
@@ -88,33 +88,57 @@
         padding: 0.5rem 1.5rem;
     }
 
-        .sub-item:hover {
-            background-color: rgba(232, 232, 232, 0.4);
-        }
+    .sub-item:hover {
+        background-color: rgba(232, 232, 232, 0.4);
+    }
 
-            .sub-item:hover .material-icons-outlined {
-                color: #ff9800;
-                transform: scale(1.08) translateY(-2px);
-                cursor: pointer;
-            }
+    .sub-item:hover .material-icons-outlined {
+        color: #ff9800;
+        transform: scale(1.08) translateY(-2px);
+        cursor: pointer;
+    }
 
-            .sub-item:hover p {
-                color: #000;
-                cursor: pointer;
-            }
+    .sub-item:hover p {
+        color: #000;
+        cursor: pointer;
+    }
 
-        .sub-item p {
-            font-size: 0.85rem;
-            color: #888888;
-            font-weight: 500;
-            margin: 0.4rem 0;
-            flex: 1;
-        }
+    .sub-item p {
+        font-size: 0.85rem;
+        color: #888888;
+        font-weight: 500;
+        margin: 0.4rem 0;
+        flex: 1;
+    }
 
     .title {
         display: flex;
         flex-direction: column;
     }
+
+    /* Back button */
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 20px;
+        text-decoration: none;
+        color: #007bff;
+        transition: color 0.2s ease;
+    }
+
+        .back-button:hover {
+            color: #0056b3;
+        }
+
+        .back-button .material-icons-outlined {
+            font-size: 24px;
+            margin-right: 8px;
+        }
+
+        .back-button span {
+            font-size: 1rem;
+            font-weight: 500;
+        }
 
 </style>
 <nav>
@@ -127,7 +151,6 @@
         <li>
             <span class="material-icons-outlined profile-icon" id="profileIcon">person</span>
             <ul>
-                @* <li class="sub-item"><span class="material-icons-outlined">grid_view</span><a asp-action="DoctorList" asp-controller="Doctor" asp-area="Doctor" asp-route-id="@ViewBag.User_Id"><p>Dashboard</p></a></li> *@
                 <li class="sub-item"><span class="material-icons-outlined">manage_accounts</span><a asp-action="EditDoctorProfile" asp-controller="Doctor" asp-area="Doctor" asp-route-id="@ViewBag.User_Id"><p>Update Profile</p></a></li>
                 <li class="sub-item"><span class="material-icons-outlined">refresh</span><a asp-action="resetpassword" asp-controller="Doctor" asp-area="Doctor"><p>Reset Password</p></a></li>
                 <li class="sub-item"><span class="material-icons-outlined">logout</span><a asp-action="Logout" asp-controller="User"><p>Logout</p></a></li>
@@ -135,16 +158,17 @@
         </li>
     </ul>
 </nav>
+<a href="@Url.Action("DoctorList", "Doctor")" class="back-button">
+    <span class="material-icons-outlined">arrow_back</span>
+    <span>Back</span>
+</a>
 <div class="container mt-5">
-    
-
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            @* <th>Appointment ID</th> *@
                             <th>Patient Name</th>
                             <th>Doctor Name</th>
                             <th>Date</th>
@@ -157,7 +181,6 @@
                         @foreach (var appointment in Model)
                         {
                             <tr>
-                                @* <td>@appointment.Appoinment_Id</td> *@
                                 <td>@Html.ActionLink(appointment.Patient_Name, "Details", "Patient", new { area = "Patient", id = appointment.Appoinment_Id, name = appointment.Patient_Name, isDone = false }, null)</td>
                                 <td>@appointment.Doctor_Name</td>
                                 <td>@appointment.Date</td>

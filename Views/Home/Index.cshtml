@@ -1,8 +1,560 @@
-﻿@{
+﻿@* @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<div class="container">
+    <div>
+        <small>COMPLEATE HEALTH CARE SOLUTION</small>
+        <h1>Your Most Trusted <br />Health Partner</h1>
+        <p>Unlock the path to complete wellness, where every moment is a testament to the boundless potential of your health journey.</p>
+        <div class="why-us">
+        <div class="row">
+            <div class="col-lg-4 d-flex align-items-stretch">
+                <div class="content">
+                    <h3>Why Choose Us?</h3>
+                    <p>
+                        Our hospital management system is designed to provide top-notch healthcare services efficiently. We combine state-of-the-art technology with compassionate care to ensure you receive the best possible treatment.
+                        Our dedicated team of professionals is here to support you 24/7, offering personalized care tailored to your needs.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-8 d-flex align-items-stretch">
+                <div class="icon-boxes d-flex flex-column justify-content-center">
+                    <div class="row">
+                        <div class="col-xl-4 d-flex align-items-stretch">
+                            <div class="icon-box mt-4 mt-xl-0">
+                                <i class="fas fa-house-user icon"></i>
+                                <h4>Appointment</h4>
+                                <small class="text-secondary">24 Hours Service</small>
+                                <p>Book your appointments anytime, anywhere with our 24-hour online scheduling system. We make it easy and convenient for you to get the care you need.</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 d-flex align-items-stretch">
+                            <div class="icon-box mt-4 mt-xl-0">
+                                <i class="fas fa-headset icon"></i>
+                                <h4>Emergency Cases</h4>
+                                <h6 class="text-secondary">+91-261-7161111</h6>
+                                <p>Our emergency team is always ready to provide immediate medical attention. Contact us anytime for urgent care needs, and we will ensure you receive prompt and efficient treatment.</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 d-flex align-items-stretch">
+                            <div class="icon-box mt-4 mt-xl-0">
+                                <i class="fas fa-clock icon"></i>
+                                <h4>Working Hours</h4>
+                                <small class="text-secondary">Timing schedule</small>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between text-nowrap"><p>Sun - Wed :</p> <p>8:00 - 17: 00</p></li>
+                                    <li class="list-group-item d-flex justify-content-between text-nowrap"><p>Thu - Fri :</p> <p>9:00 - 17: 00</p></li>
+                                    <li class="list-group-item d-flex justify-content-between text-nowrap"><p>Sat - Sun :</p> <p>10:00 - 17: 00</p></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div> *@
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/gallery.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .section-title {
+            margin-bottom: 50px;
+        }
+
+        .gallery {
+            margin-top: 200px;
+            margin-bottom: 200px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-lightbox img {
+            transition: transform 0.2s;
+        }
+
+            .gallery-lightbox img:hover {
+                transform: scale(1.05);
+            }
+
+        /* Header Styles */
+        .navbar {
+            padding: 10px 0;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+            .navbar a {
+                color: #333;
+                padding: 15px 20px;
+                text-decoration: none;
+            }
+
+                .navbar a:hover {
+                    background-color: #ddd;
+                    color: #000;
+                }
+
+        .hideTopHeader {
+            display: none;
+        }
+
+        .stickyHeader {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hero Section Styles */
+        #hero {
+            display: 100%;
+            height: 90vh;
+            background: url("~/wwwroot/images/hero-bg.jpg") top center;
+            background-size: cover;
+            margin-bottom: -115px;
+            margin-top: 80px;
+        }
+
+            #hero .container {
+                position: relative;
+                text-align: left;
+            }
+
+            #hero h1 {
+                margin: 0;
+                font-size: 48px;
+                font-weight: 700;
+                line-height: 56px;
+                text-transform: uppercase;
+                color: #2c4964;
+            }
+
+            #hero small {
+                font-size: 1.2rem;
+            }
+
+        /* Info Page Styles */
+        .why-us {
+            padding: 60px 0;
+        }
+
+        .icon-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .icon-box h4 {
+                margin-top: 20px;
+                font-size: 1.2rem;
+            }
+
+            .icon-box p {
+                font-size: 0.9rem;
+                color: #666;
+            }
+
+        /* Services Section Styles */
+        .service-img img {
+            border-radius: 5px;
+            box-shadow: 0px 0px 30px 0px rgba(0, 42, 106, 0.1)
+        }
+
+        .service-content h2 {
+            color: #223a66;
+            font-size: 44px;
+            font-weight: bold;
+        }
+
+        .service-content {
+            text-align: left;
+        }
+
+        .btn-get-started {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #223a66;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+            .btn-get-started:hover {
+                background-color: white;
+                border : double;
+                border-color: #223a66;
+            }
+
+        /* Specialities Section Styles */
+        .section-specialities {
+            background-color: rgb(243, 241, 241);
+            padding: 80px 0;
+            margin: 7rem 0;
+        }
+
+        .speicality-img {
+            position: relative;
+            height: 150px;
+            box-shadow: 2px 2px 13px rgba(0, 0, 0, 0.1);
+            border-radius: 100%;
+            width: 150px;
+            background: #fff;
+            transition: 0.4s ease-in;
+        }
+
+        .speicality-item :hover {
+            transform: scale(1.1);
+            background: rgb(221, 221, 223);
+        }
+
+            .speicality-item :hover > img {
+                background: none;
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+            }
+
+            .speicality-item:hover p {
+                transform: scale(1.1);
+                color: #1977cc;
+            }
+
+        .speicality-img img {
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+
+        .speicality-img span {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            box-shadow: 1px 6px 14px rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            padding: 5px;
+            background-color: #fff;
+            display: -webkit-inline-box;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            justify-content: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+        }
+
+            .speicality-img span i {
+                font-size: 15px;
+                color: #0de0fe;
+            }
+
+        .speicality-item p {
+            font-size: 16px;
+            font-weight: 500;
+            margin: 30px 0 0;
+            transition: 0.4s ease-in;
+        }
+        .gallery{
+    margin-top: 3rem;
+    margin-bottom: 8rem;
+}
+.gallery-item {
+    overflow: hidden;
+    border-right: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+}
+.gallery-item img {
+    transition: all ease-in-out 0.4s;
+}
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+.galelry-lightbox {
+    max-height: 200px;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.galelry-lightbox img{
+    object-fit:contain;
+    object-position: top;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container">
+            <div>
+                <small>COMPLETE HEALTH CARE SOLUTION</small>
+                <h1>Your Most Trusted <br />Health Partner</h1>
+                <small>Unlock the path to complete wellness, where every moment is a testament to the boundless potential of your health journey.</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Page -->
+    <section class="why-us mt-5 mt-md-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 d-flex align-items-stretch">
+                    <div class="content">
+                        <h3>Why Choose Us?</h3>
+                        <p>
+                            Our hospital management system is designed to provide top-notch healthcare services efficiently. We combine state-of-the-art technology with compassionate care to ensure you receive the best possible treatment. Our dedicated team of professionals is here to support you 24/7, offering personalized care tailored to your needs.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-8 d-flex align-items-stretch">
+                    <div class="icon-boxes d-flex flex-column justify-content-center">
+                        <div class="row">
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box mt-4 mt-xl-0">
+                                    <i class="fas fa-house-user"></i>
+                                    <h4>Appointment</h4>
+                                    <small class='text-secondary'>24 Hours Service</small>
+                                    <p>Book your appointments anytime, anywhere with our 24-hour online scheduling system. We make it easy and convenient for you to get the care you need.</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box mt-4 mt-xl-0">
+                                    <i class="fas fa-headset"></i>
+                                    <h4>Emergency Cases</h4>
+                                    <h6 class='text-secondary'>+91-261-7161111</h6>
+                                    <p>Our emergency team is always ready to provide immediate medical attention. Contact us anytime for urgent care needs, and we will ensure you receive prompt and efficient treatment.</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box mt-4 mt-xl-0">
+                                    <i class="fas fa-clock"></i>
+                                    <h4>Working Hours</h4>
+                                    <small class='text-secondary'>Timing schedule</small>
+                                    <ul class='list-group list-group-flush'>
+                                        <li class="list-group-item d-flex justify-content-between text-nowrap"><p>Sun - Wed : </p> <p>8:00 - 17:00</p></li>
+                                        <li class="list-group-item d-flex justify-content-between text-nowrap"><p>Thu - Fri : </p> <p>9:00 - 17:00</p></li>
+                                        <li class="list-group-item d-flex justify-content-between text-nowrap"><p>Sat - Sun : </p> <p>10:00 - 17:00</p></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="container" style="margin-top: 200px; margin-bottom: 200px;">
+        <div class="mb-5 section-title text-center">
+            <h2>Our Premier Services</h2>
+            <p class="m-0">Experience exceptional care tailored to your needs.</p>
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-img">
+                        <img src="~/images/doc/doc1.jpg" alt="Doctor consultation" class="img-fluid" />
+                        <img src="~/images/doc/doc4.jpg" alt="Medical staff" class="img-fluid mt-4" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-img mt-4 mt-lg-0">
+                        <img src="~/images/doc/doctor 5.jpg" alt="Healthcare team" class="img-fluid" />
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="service-content ps-4 mt-4 mt-lg-0">
+                        <h2>Personalized Care <br />for Healthy Living</h2>
+                        <p class="mt-4 mb-5 text-secondary form-text">
+                            Discover the leading medical services designed to ensure your health and well-being. Our dedicated team provides compassionate and comprehensive care, tailored to meet the unique needs of every patient.
+                        </p>
+                        <a href="/service" class="btn-get-started scrollto">Explore Our Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clinic and Specialities -->
+    <section class="section section-specialities position-relative">
+        <div class="container-fluid">
+            <div class="mb-5 section-title text-center">
+                <h2>Clinic and Specialities</h2>
+                <p class="m-0">Discover world-class healthcare tailored to your needs.</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-9">
+                    <div class="specialities-slider d-flex justify-content-center align-items-center gap-5">
+                        <div class="speicality-item text-center">
+                            <div class="speicality-img">
+                                <img src="~/images/specialities/specialities-01.png" class="img-fluid" alt="Urology" />
+                                <span><i class="fas fa-check-double"></i></span>
+                            </div>
+                            <p>Urology</p>
+                        </div>
+                        <div class="speicality-item text-center">
+                            <div class="speicality-img">
+                                <img src="~/images/specialities/specialities-02.png" class="img-fluid" alt="Neurology" />
+                                <span><i class="fas fa-check-double"></i></span>
+                            </div>
+                            <p>Neurology</p>
+                        </div>
+                        <div class="speicality-item text-center">
+                            <div class="speicality-img">
+                                <img src="~/images/specialities/specialities-03.png" class="img-fluid" alt="Orthopedic" />
+                                <span><i class="fas fa-check-double"></i></span>
+                            </div>
+                            <p>Orthopedic</p>
+                        </div>
+                        <div class="speicality-item text-center">
+                            <div class="speicality-img">
+                                <img src="~/images/specialities/specialities-04.png" class="img-fluid" alt="Cardiologist" />
+                                <span><i class="fas fa-check-double"></i></span>
+                            </div>
+                            <p>Cardiologist</p>
+                        </div>
+                        <div class="speicality-item text-center">
+                            <div class="speicality-img">
+                                <img src="~/images/specialities/specialities-05.png" class="img-fluid" alt="Dentist" />
+                                <span><i class="fas fa-check-double"></i></span>
+                            </div>
+                            <p>Dentist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery container">
+        <div class="text-center mb-5">
+            <div class="section-title mb-3">
+                <h2>Gallery</h2>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row g-0">
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="gallery-item">
+                        <div class="gallery-lightbox d-flex justify-content-center align-items-center">
+                            <img src="~/images/features/baby.png" alt="" class="w-100" style="object-fit: cover; max-height: 280px; min-height: 280px;" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="gallery-item">
+                        <div class="gallery-lightbox d-flex justify-content-center align-items-center">
+                            <img src="~/images/doc/doc4.jpg" alt="" class="w-100" style="object-fit: cover; max-height: 280px; min-height: 280px;" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="gallery-item">
+                        <div class="gallery-lightbox d-flex justify-content-center align-items-center">
+                            <img src="~/images/doc/doctor 5.jpg" alt="" class="w-100" style="object-fit: cover; max-height: 280px; min-height: 280px;" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="gallery-item">
+                        <div class="gallery-lightbox d-flex justify-content-center align-items-center">
+                            <img src="~/images/doc/doc1.jpg" alt="" class="w-100" style="object-fit: cover; max-height: 280px; min-height: 280px;" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="gallery-item">
+                        <div class="gallery-lightbox d-flex justify-content-center align-items-center">
+                            <img src="~/images/doc/doctor chair 2.jpg" alt="" class="w-100" style="object-fit: cover; max-height: 280px; min-height: 280px;" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="gallery-item">
+                        <div class="gallery-lightbox d-flex justify-content-center align-items-center">
+                            <img src="~/images/features/feature-03.jpg" alt="" class="w-100" style="object-fit: cover; max-height: 280px; min-height: 280px;" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="gallery-item">
+                        <div class="gallery-lightbox d-flex justify-content-center align-items-center">
+                            <img src="~/images/doc/doctor 5.jpg" alt="" class="w-100" style="object-fit: cover; max-height: 280px; min-height: 280px;" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="gallery-item">
+                        <div class="gallery-lightbox d-flex justify-content-center align-items-center">
+                            <img src="~/images/doc/doctor chair 2.jpg" alt="" class="w-100" style="object-fit: cover; max-height: 280px; min-height: 280px;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var lastScrollTop = 0;
+            $(window).scroll(function () {
+                var st = $(this).scrollTop();
+                if (st > lastScrollTop) {
+                    $('header').addClass('hideTopHeader').removeClass('stickyHeader');
+                } else {
+                    $('header').addClass('stickyHeader').removeClass('hideTopHeader');
+                }
+                lastScrollTop = st;
+            });
+        });
+    </script>
+</body>
+</html>
