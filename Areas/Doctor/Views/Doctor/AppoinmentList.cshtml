@@ -39,22 +39,22 @@
         padding: 0.625rem 0 0.5rem;
     }
 
-    li ul {
-        flex-direction: column;
-        position: absolute;
-        background-color: white;
-        align-items: flex-start;
-        transition: all 0.5s ease;
-        width: 20rem;
-        right: -3rem;
-        top: 4.5rem;
-        border-radius: 0.325rem;
-        gap: 0;
-        padding: 1rem 0rem;
-        opacity: 0;
-        box-shadow: 0px 0px 100px rgba(20, 18, 18, 0.25);
-        display: none;
-    }
+        li ul {
+            flex-direction: column;
+            position: absolute;
+            background-color: white;
+            align-items: flex-start;
+            transition: all 0.5s ease;
+            width: 20rem;
+            right: -3rem;
+            top: 3.5rem;
+            border-radius: 0.325rem;
+            gap: 0;
+            padding: 1rem 0rem;
+            opacity: 0;
+            box-shadow: 0px 0px 100px rgba(20, 18, 18, 0.25);
+            display: none;
+        }
 
     ul li:hover > ul, ul li ul:hover {
         visibility: visible;
@@ -67,11 +67,11 @@
         transition: all 0.3s ease-out;
     }
 
-    .material-icons-outlined:hover {
-        color: #ff9800;
-        transform: scale(1.25) translateY(-4px);
-        cursor: pointer;
-    }
+        .material-icons-outlined:hover {
+            color: #ff9800;
+            transform: scale(1.25) translateY(-4px);
+            cursor: pointer;
+        }
 
     .profile-icon {
         font-size: 35px;
@@ -88,28 +88,28 @@
         padding: 0.5rem 1.5rem;
     }
 
-    .sub-item:hover {
-        background-color: rgba(232, 232, 232, 0.4);
-    }
+        .sub-item:hover {
+            background-color: rgba(232, 232, 232, 0.4);
+        }
 
-    .sub-item:hover .material-icons-outlined {
-        color: #ff9800;
-        transform: scale(1.08) translateY(-2px);
-        cursor: pointer;
-    }
+            .sub-item:hover .material-icons-outlined {
+                color: #ff9800;
+                transform: scale(1.08) translateY(-2px);
+                cursor: pointer;
+            }
 
-    .sub-item:hover p {
-        color: #000;
-        cursor: pointer;
-    }
+            .sub-item:hover p {
+                color: #000;
+                cursor: pointer;
+            }
 
-    .sub-item p {
-        font-size: 0.85rem;
-        color: #888888;
-        font-weight: 500;
-        margin: 0.4rem 0;
-        flex: 1;
-    }
+        .sub-item p {
+            font-size: 0.85rem;
+            color: #888888;
+            font-weight: 500;
+            margin: 0.4rem 0;
+            flex: 1;
+        }
 
     .title {
         display: flex;
@@ -185,19 +185,27 @@
                                 <td>@appointment.Doctor_Name</td>
                                 <td>@appointment.Date</td>
                                 <td>@appointment.STime - @appointment.ETime</td>
-                                <td>@if (appointment.IsDone)
+                                <td>
+                                    @if (appointment.IsDone)
                                     {
-                                        <span class="badge badge-success">Completed</span>
+                                        <p class="badge badge-success">Completed</p>
                                     }
                                     else
                                     {
-                                        <span class="badge badge-warning">Pending</span>
-                                    }</td>
+                                        <p class="badge badge-warning">Pending</p>
+                                    }
+                                </td>
                                 <td>
                                     @if (!appointment.IsDone)
                                     {
                                         <button class="btn btn-outline-dark done-btn" data-appointment-id="@appointment.Appoinment_Id">Done</button>
                                     }
+                                </td>
+                                <td>
+                                    <form asp-action="DeleteAppointment" asp-controller="Doctor" method="post">
+                                        <input type="hidden" name="patientName" value="@appointment.Patient_Name" />
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         }

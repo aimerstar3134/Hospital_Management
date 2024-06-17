@@ -157,7 +157,7 @@ namespace Hospital_Management.Controllers
             Response.Headers["Pragma"] = "no-cache";
             Response.Headers["Expires"] = "0";
 
-            return Content("<!DOCTYPE html><html><head><title>Logging out...</title><script>setTimeout(function() { window.location.reload(true); setTimeout(function() { window.location.href = '/User/Login'; }, ); }, 2000);</script></head><body></body></html>", "text/html");
+            return Content("<!DOCTYPE html><html><head><title>Logging out...</title><script>setTimeout(function() { window.location.reload(true); setTimeout(function() { window.location.href = '/Home/Index'; }, ); }, 2000);</script></head><body></body></html>", "text/html");
         }
 
         //public void UpdateUser(usermodel user)

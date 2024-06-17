@@ -54,16 +54,17 @@ app.UseEndpoints(endpoints =>
     endpoints.MapAreaControllerRoute(
                    name: "Doctor",
                    areaName: "Doctor",
-                   pattern: "Doctor/{controller=Doctor}/{action=DoctorProfileList}");
+                   pattern: "Doctor/{controller=Doctor}/{action=DoctorList}");
 
     endpoints.MapAreaControllerRoute(
                    name: "Patient",
                    areaName: "Patient",
-                   pattern: "Patient/{controller=Patient}/{action=AppoinmnetList}");
+                   pattern: "Patient/{controller=Patient}/{action=PatientDashboard}");
 
     endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
+
 });
 
 app.Run();

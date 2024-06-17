@@ -309,5 +309,32 @@ namespace Hospital_Management.Areas.Doctor.Data
                 return false;
             }
         }
+
+        public bool DeleteAppointment(string name)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connection))
+                {
+                    string query = "DELETE FROM Appoinment_tbl WHERE Patient_Name = @id";
+
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@id", name);
+
+                        conn.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or display an error message
+                Console.WriteLine("Error deleting availability entry: " + ex.Message);
+                return false;
+            }
+        }
     }
 }

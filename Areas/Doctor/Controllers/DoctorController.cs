@@ -194,6 +194,13 @@ namespace Hospital_Management.Areas.Doctor.Controllers
             }
             return Json(availableDoctors);
         }
+
+        [HttpPost]
+        public IActionResult DeleteAppointment(string patientName)
+        {
+            layer.DeleteAppointment(patientName);
+            return RedirectToAction("AppoinmentList");
+        }
     }
 }
 

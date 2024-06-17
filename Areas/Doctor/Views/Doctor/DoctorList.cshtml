@@ -217,6 +217,13 @@
             width: 100%;
             flex-shrink: 0;
         }
+
+        /* Profile dropdown */
+        .navbar-nav .dropdown-menu {
+            right: 0; /* Align the dropdown to the right edge */
+            left: auto; /* Ensure it doesn't align to the left */
+            max-width: 300px; /* Set a maximum width */
+        }
     </style>
 </head>
 
@@ -259,10 +266,6 @@
         </nav>
     </header>
     <div class="dashboard-container">
-        <a href="@Url.Action("Index", "Home")" class="back-button">
-            <span class="material-icons-outlined">arrow_back</span>
-            <span>Back</span>
-        </a>
         <div class="dashboard-header">
             <h1>Doctor Profile</h1>
         </div>
@@ -288,7 +291,28 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const profileDropdown = document.getElementById('profileDropdown');
+            const dropdownMenu = profileDropdown.nextElementSibling;
+
+            profileDropdown.addEventListener('click', function () {
+                setTimeout(() => {
+                    const rect = dropdownMenu.getBoundingClientRect();
+                    const windowWidth = window.innerWidth;
+
+                    // Check if the dropdown overflows the viewport
+                    if (rect.right > windowWidth) {
+                        dropdownMenu.style.right = '0';
+                        dropdownMenu.style.left = 'auto';
+                    } else {
+                        dropdownMenu.style.right = 'auto';
+                        dropdownMenu.style.left = '0';
+                    }
+                }, 0); // Delay to allow the dropdown to render
+            });
+        });
+    </script>
 </body>
 
 </html>
-
