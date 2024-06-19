@@ -284,9 +284,31 @@
             </div>
         </div>
     </div>
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Hospital Management System - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="footer position-relative border-top text-muted" ">
+        <div class="footer-bottom">
+            <div class="container-fluid">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="copyright-text">
+                                <p class="mb-0">
+                                    <div class="copyRight text-center">
+                                        <p>© @(DateTime.Now.Year) All Rights Reserved</p>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                            <div class="copyright-menu">
+                                <ul class="policy-menu d-flex gap-2 justify-content-center">
+                                    <a asp-controller="Home" asp-action="Terms" class='text-white'>Terms and Conditions</a>
+                                    <a asp-controller="Home" asp-action="Privacy" class='text-white'>Privacy Policy</a>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
