@@ -20,6 +20,7 @@
             border: none;
             border-radius: 15px;
             overflow: hidden;
+            cursor: pointer;
         }
 
             .doctor-card:hover {
@@ -28,6 +29,8 @@
             }
 
             .doctor-card .card-body {
+                display: flex;
+                align-items: center;
                 padding: 20px;
                 background-color: #f8f9fa;
             }
@@ -49,6 +52,13 @@
             .doctor-card .card-text {
                 font-size: 1rem;
                 color: #495057;
+            }
+
+            .doctor-card img {
+                max-width: 100px;
+                max-height: 100px;
+                margin-right: 20px;
+                border-radius: 50%;
             }
 
         .badge-primary {
@@ -90,6 +100,17 @@
                 font-size: 1rem;
                 font-weight: 500;
             }
+
+        /* Additional cursor effect */
+        .doctor-card:hover .card-body {
+            background-color: #e9ecef;
+            transition: background-color 0.2s ease;
+        }
+
+        .doctor-card:hover img {
+            transform: scale(1.1);
+            transition: transform 0.2s ease;
+        }
     </style>
 </head>
 <body>
@@ -105,12 +126,15 @@
             {
                 <div class="col-md-4">
                     <div class="card doctor-card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Designation)</h6>
-                            <p class="card-text"><strong>Phone:</strong> @Html.DisplayFor(modelItem => item.Phone)</p>
-                            <p class="card-text"><strong>Gender:</strong> @Html.DisplayFor(modelItem => item.Gender)</p>
-                            <span class="badge badge-primary">ID: @Html.DisplayFor(modelItem => item.User_Id)</span>
+                        <div class="card-body d-flex align-items-center">
+                            <img src="~/images/img/hero.png" alt="Doctor Image">
+                            <div>
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Designation)</h6>
+                                <p class="card-text"><strong>Phone:</strong> @Html.DisplayFor(modelItem => item.Phone)</p>
+                                <p class="card-text"><strong>Gender:</strong> @Html.DisplayFor(modelItem => item.Gender)</p>
+                                <span class="badge badge-primary">ID: @Html.DisplayFor(modelItem => item.User_Id)</span>
+                            </div>
                         </div>
                     </div>
                 </div>

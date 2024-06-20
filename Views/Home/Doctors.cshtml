@@ -51,6 +51,22 @@
                 color: #495057;
             }
 
+            .doctor-card img {
+                max-width: 100px;
+                max-height: 100px;
+                margin-right: 20px;
+                border-radius: 50%;
+            }
+            /* Additional cursor effect */
+            .doctor-card:hover .card-body {
+                background-color: #e9ecef;
+                transition: background-color 0.2s ease;
+            }
+
+            .doctor-card:hover img {
+                transform: scale(1.1);
+                transition: transform 0.2s ease;
+
         .badge-primary {
             background-color: #007bff;
             font-size: 0.9rem;
@@ -78,12 +94,15 @@
             {
                 <div class="col-md-4">
                     <div class="card doctor-card mb-4 shadow-sm">
-                        <div class="card-body">
+                        <div class="card-body d-flex align-items-center">
+                            <img src="~/images/img/hero.png" alt="Doctor Image">
+                            <div>
                             <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
                             <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Designation)</h6>
                             <p class="card-text"><strong>Phone:</strong> @Html.DisplayFor(modelItem => item.Phone)</p>
                             <p class="card-text"><strong>Gender:</strong> @Html.DisplayFor(modelItem => item.Gender)</p>
                             <span class="badge badge-primary">ID: @Html.DisplayFor(modelItem => item.User_Id)</span>
+                            </div>
                         </div>
                     </div>
                 </div>

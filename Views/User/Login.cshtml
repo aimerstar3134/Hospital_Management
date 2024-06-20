@@ -1,4 +1,10 @@
 ﻿@model Hospital_Management.Areas.User.Models.usermodel
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
 
 <!DOCTYPE html>
 <html lang="en">
