@@ -222,10 +222,31 @@
 
         /* Profile dropdown */
         .navbar-nav .dropdown-menu {
+            min-width: 200px;
             right: 0;
             left: auto;
-            max-width: 300px;
+            position: absolute;
+            transform: translateX(-100%);
         }
+
+        /* Ensuring dropdown within viewport */
+        .dropdown-menu {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+            /* Additional styles for dropdown items */
+            .dropdown-menu a {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+                .dropdown-menu a .material-icons-outlined {
+                    font-size: 24px;
+                }
+
     </style>
 </head>
 <body>

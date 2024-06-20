@@ -200,9 +200,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Patient" asp-controller="Patient" asp-action="DoctorProfileList">Available Doctors </a>
                         </li>
-                        @* <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="Patient" asp-controller="Patient" asp-action="EditPatientProfile">Edit Profile </a>
-                        </li> *@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
@@ -267,69 +264,92 @@
             </div>
         </div>
     </footer>
-    @section Scripts {
-        <script>
-            $(function () {
-                $('#showButton').click(function () {
-                    var selectedDate = $('#datepicker').val();
-                    $.ajax({
-                        url: '/Doctor/GetAvailableTime',
-                        type: 'GET',
-                        data: { date: selectedDate },
-                        success: function (response) {
-                            $('#doctorCards').empty();
-                            if (response.length > 0) {
-                                var doctors = {};
-                                $.each(response, function (index, item) {
-                                    if (!doctors[item.user_Id]) {
-                                        doctors[item.user_Id] = {
-                                            name: item.name,
-                                            designation: item.designation,
-                                            phone: item.phone,
-                                            gender: item.gender,
-                                            availableTimes: []
-                                        };
-                                    }
-                                    doctors[item.user_Id].availableTimes.push({
-                                        startTime: item.availableStartTime ? item.availableStartTime : 'N/A',
-                                        endTime: item.availableEndTime ? item.availableEndTime : 'N/A'
-                                    });
-                                });
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#profileDropdown').on('click', function () {
+                var dropdownMenu = $(this).next('.dropdown-menu');
+                setTimeout(function () {
+                    var rect = dropdownMenu[0].getBoundingClientRect();
+                    var windowWidth = window.innerWidth;
 
-                                $.each(doctors, function (index, doctor) {
-                                    var card = `<div class="col-md-4 mb-4">
-                                                        <div class="card shadow">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title">${doctor.name}</h5>
-                                                                <p class="card-text">Designation: ${doctor.designation}</p>
-                                                                <p class="card-text">Date: ${selectedDate}</p>
-                                                                <p class="card-text">Available Times:</p>
-                                                                <ul>`;
-                                    $.each(doctor.availableTimes, function (index, time) {
-                                        card += `<li>${time.startTime} - ${time.endTime}</li>`;
-                                    });
-                                    card += `</ul>
-                                                    <p class="card-text">Phone: ${doctor.phone}</p>
-                                                    <p class="card-text">Gender: ${doctor.gender}</p>
-                                                    <a href="/Patient/Patient/AddAppoinment?id=${index}" class="btn btn-primary">Add Appointment</a>
-                                                </div>
-                                            </div>
-                                        </div>`;
-                                    $('#doctorCards').append(card);
+                    // Adjust dropdown position if it overflows the viewport
+                    if (rect.right > windowWidth) {
+                        dropdownMenu.css({
+                            right: 'auto',
+                            left: `-${rect.width - $('#profileDropdown').outerWidth()}px`
+                        });
+                    } else {
+                        dropdownMenu.css({
+                            right: '0',
+                            left: 'auto'
+                        });
+                    }
+                }, 0); // Delay to allow the dropdown to render
+            });
+        });
+
+        $(function () {
+            $('#showButton').click(function () {
+                var selectedDate = $('#datepicker').val();
+                $.ajax({
+                    url: '/Doctor/GetAvailableTime',
+                    type: 'GET',
+                    data: { date: selectedDate },
+                    success: function (response) {
+                        $('#doctorCards').empty();
+                        if (response.length > 0) {
+                            var doctors = {};
+                            $.each(response, function (index, item) {
+                                if (!doctors[item.user_Id]) {
+                                    doctors[item.user_Id] = {
+                                        name: item.name,
+                                        designation: item.designation,
+                                        phone: item.phone,
+                                        gender: item.gender,
+                                        availableTimes: []
+                                    };
+                                }
+                                doctors[item.user_Id].availableTimes.push({
+                                    startTime: item.availableStartTime ? item.availableStartTime : 'N/A',
+                                    endTime: item.availableEndTime ? item.availableEndTime : 'N/A'
                                 });
-                            } else {
-                                var message = '<div class="col-md-12 text-center">No doctors available on the selected date.</div>';
-                                $('#doctorCards').append(message);
-                            }
-                        },
-                        error: function (xhr, status, error) {
-                            console.log(error);
+                            });
+
+                            $.each(doctors, function (index, doctor) {
+                                var card = `<div class="col-md-4 mb-4">
+                                                            <div class="card shadow">
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title">${doctor.name}</h5>
+                                                                    <p class="card-text">Designation: ${doctor.designation}</p>
+                                                                    <p class="card-text">Date: ${selectedDate}</p>
+                                                                    <p class="card-text">Available Times:</p>
+                                                                    <ul>`;
+                                $.each(doctor.availableTimes, function (index, time) {
+                                    card += `<li>${time.startTime} - ${time.endTime}</li>`;
+                                });
+                                card += `</ul>
+                                                        <p class="card-text">Phone: ${doctor.phone}</p>
+                                                        <p class="card-text">Gender: ${doctor.gender}</p>
+                                                        <a href="/Patient/Patient/AddAppoinment?id=${index}" class="btn btn-primary">Add Appointment</a>
+                                                    </div>
+                                                </div>
+                                            </div>`;
+                                $('#doctorCards').append(card);
+                            });
+                        } else {
+                            var message = '<div class="col-md-12 text-center">No doctors available on the selected date.</div>';
+                            $('#doctorCards').append(message);
                         }
-                    });
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
                 });
             });
-        </script>
-    }
+        });
+    </script>
 </body>
 
 </html>

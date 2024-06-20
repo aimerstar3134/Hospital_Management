@@ -155,6 +155,12 @@ namespace Hospital_Management.Areas.Patient.Controllers
             patient_Layer.UpdateAppointmentDoneStatus(appointmentId);
             return Ok();
         }
+
+        public IActionResult DeleteAppointment(string patientName)
+        {
+            patient_Layer.DeleteAppointment(patientName);
+            return RedirectToAction("AppoinmnetList");
+        }
         //[HttpGet]
         //public IActionResult EditPatientProfile()
         //{

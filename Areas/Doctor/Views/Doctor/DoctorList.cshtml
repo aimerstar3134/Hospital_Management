@@ -209,6 +209,34 @@
             font-weight: 500;
         }
 
+        /* Profile dropdown */
+        .navbar-nav .dropdown-menu {
+            min-width: 200px;
+            right: 0;
+            left: auto;
+            position: absolute;
+            transform: translateX(-100%);
+        }
+
+        /* Ensuring dropdown within viewport */
+        .dropdown-menu {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+            /* Additional styles for dropdown items */
+            .dropdown-menu a {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+                .dropdown-menu a .material-icons-outlined {
+                    font-size: 24px;
+                }
+
+
         /* Footer styles */
         footer {
             background-color: #f8f9fa;
@@ -218,12 +246,7 @@
             flex-shrink: 0;
         }
 
-        /* Profile dropdown */
-        .navbar-nav .dropdown-menu {
-            right: 0; /* Align the dropdown to the right edge */
-            left: auto; /* Ensure it doesn't align to the left */
-            max-width: 300px; /* Set a maximum width */
-        }
+        
     </style>
 </head>
 
